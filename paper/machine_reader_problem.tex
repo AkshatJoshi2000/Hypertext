@@ -1,0 +1,474 @@
+%%
+%% ACM Hypertext 2026 — Blue Sky / Short Paper Submission
+%% Switch to \documentclass[sigconf,anonymous,review]{acmart} before submitting
+%%
+\documentclass[sigconf,authordraft]{acmart}
+
+\usepackage{listings}
+\usepackage{xcolor}
+
+\lstdefinestyle{webcode}{
+  basicstyle=\ttfamily\scriptsize,
+  breaklines=true,
+  frame=single,
+  rulecolor=\color{gray!50},
+  backgroundcolor=\color{gray!6},
+  columns=fullflexible,
+  keepspaces=true,
+}
+
+\AtBeginDocument{%
+  \providecommand\BibTeX{{Bib\TeX}}}
+
+\setcopyright{acmlicensed}
+\copyrightyear{2026}
+\acmYear{2026}
+\acmDOI{XXXXXXX.XXXXXXX}
+
+\acmConference[HT '26]{ACM Conference on Hypertext and Social Media}%
+  {September 14--18, 2026}{London, United Kingdom}
+\acmISBN{978-1-4503-XXXX-X/2026/09}
+
+%%
+%% BEGIN DOCUMENT
+%%
+\begin{document}
+
+\title[The Machine Reader Problem]{The Machine Reader Problem: What AI Agents
+  Reveal About Hypertext as Method}
+
+%% Replace with real author details before camera-ready submission.
+%% For double-anonymous review use \documentclass[sigconf,anonymous,review]{acmart}
+\author{Akshat Joshi}
+\affiliation{%
+  \institution{Independent Researcher}
+  \city{Seattle}
+  \country{USA}}
+\email{akshatjoshi2000@gmail.com}
+
+\author{Meha Gupta}
+\affiliation{%
+  \institution{CUNY Graduate Center}
+  \city{New York City}
+  \country{USA}}
+\email{mgupta@graduatecenter.cuny.com}
+
+\renewcommand{\shortauthors}{Author One and Author Two}
+
+%%
+%% ABSTRACT
+%%
+\begin{abstract}
+The Hypertext theory has always assumed a human reader: someone who follows links,
+interprets anchors, navigates trails, becomes disoriented, and constructs meaning
+through interaction with linked nodes. Modern AI agents are now traversing
+hypertext as a new class of reader. They parse raw HTML, metadata, schema markup,
+accessibility labels, and link structures that are invisible, secondary, or
+differently meaningful to human readers. This divergence is not merely
+technical---it exposes which of hypertext's epistemic assumptions were always
+contingent on the reader being human. We introduce the \emph{Machine Reader
+Problem}: the interpretive and structural gap that emerges when AI agents traverse
+hypertext through mechanisms that diverge from those assumed by hypertext theory.
+We show that this divergence makes three classical hypertext structures---hidden
+markup, paratext, and link trails---into exploitable attack surfaces. Rather than
+treating this as an AI security problem alone, we position it as a foundational
+challenge to hypertext as an epistemic method, one that demands new thinking about
+authorship, readership, and the design of trustworthy hypertext systems for both
+human and machine readers.
+\end{abstract}
+
+%%
+%% CCS CONCEPTS
+%% Generated via https://dl.acm.org/ccs/ccs.cfm
+%%
+\begin{CCSXML}
+<ccs2012>
+ <concept>
+  <concept_id>10002951.10003260.10003282</concept_id>
+  <concept_desc>Information systems~Hypertext / hypermedia</concept_desc>
+  <concept_significance>500</concept_significance>
+ </concept>
+ <concept>
+  <concept_id>10002978.10003022.10003023</concept_id>
+  <concept_desc>Security and privacy~Web application security</concept_desc>
+  <concept_significance>300</concept_significance>
+ </concept>
+ <concept>
+  <concept_id>10010147.10010178</concept_id>
+  <concept_desc>Computing methodologies~Artificial intelligence</concept_desc>
+  <concept_significance>100</concept_significance>
+ </concept>
+</ccs2012>
+\end{CCSXML}
+
+\ccsdesc[500]{Information systems~Hypertext / hypermedia}
+\ccsdesc[300]{Security and privacy~Web application security}
+\ccsdesc[100]{Computing methodologies~Artificial intelligence}
+
+\keywords{Hypertext, Machine Readership, AI Agents, Adversarial Web, Paratext,
+  Agentic Media, Prompt Injection, Hypertext Theory}
+
+\maketitle
+
+%%
+%% 1. INTRODUCTION
+%%
+\section{Introduction}
+
+Consider what hypertext has always assumed: a reader. Not a passive recipient, but
+someone who navigates---who clicks some links and ignores others, who backtracks
+when lost, who brings to the page a lifetime of prior knowledge and social context.
+Bush's memex user built trails from personal association~\cite{bush1945}. Nelson's
+reader exercised navigational freedom~\cite{nelson1965}. Landow's decentered reader
+actively resisted authoritative reading paths~\cite{landow2006}. Even Conklin's
+famous problem of being ``lost in hyperspace''~\cite{conklin1987} presupposes a
+reader who can \emph{feel} disoriented---who has a sense of where they came from
+and what they were looking for. Across five decades of hypertext theory, the reader
+has been assumed to be human. Embodied. Socially situated. Capable of judgment.
+
+That assumption is no longer safe.
+
+AI agents now traverse hypertext as a new class of reader. They browse pages,
+retrieve documents, follow link structures, and act on what they find---sometimes
+autonomously, sometimes on behalf of users who trust them to read the web on their
+behalf. But these agents do not encounter hypertext the way human readers do. Where
+a human sees a rendered page, an agent may also receive raw HTML, buried comments,
+metadata fields, and schema markup that human eyes never reach. Where a human
+weighs a source's credibility through design, reputation, and social familiarity,
+an agent relies on structured authority signals---author fields, citation counts,
+schema type declarations---that are straightforward to fabricate. Where a human
+follows links selectively and can backtrack when something feels wrong, an agent
+may traverse a programmatically constructed path with no internal signal that
+anything is amiss.
+
+This creates an asymmetry that matters. For a human reader, a biased or
+adversarially structured document may skew interpretation---but the reader brings
+social context, prior knowledge, and embodied judgment that can push
+back~\cite{landow2006,traberg2022}. For an AI agent encountering the same document,
+those same structures can fully determine the traversal: which trail is followed,
+which sources are trusted, which conclusion is reached. The agent has no equivalent
+of skepticism, no felt sense of disorientation, no way to know it has been
+captured.
+
+We call this the \textbf{Machine Reader Problem}: the structural gap that emerges
+when AI agents traverse hypertext through mechanisms that diverge from those the
+field has always assumed. This is not simply a new class of security threat. It is
+a challenge to hypertext itself---to the assumptions built into links, trails,
+anchors, paratext, and navigation that made sense when the reader was always human.
+This paper defines the problem, develops a taxonomy of the adversarial structures
+it enables, and argues for a reconceptualization of readership, disorientation, and
+trust in hypertext systems designed for both human and machine readers.
+
+%%
+%% 2. HYPERTEXT'S ASSUMED READER
+%%
+\section{Hypertext's Assumed Reader}
+
+Hypertext theory has always carried a theory of the reader within it, often
+unstated. To name the concepts is to name the assumptions. Table~\ref{tab:concepts}
+draws out what each foundational concept takes for granted about the reader, and
+what shifts when that reader is a machine.
+
+\begin{table}[t]
+  \caption{Classical hypertext concepts and their machine-reader consequences.}
+  \label{tab:concepts}
+  \small
+  \begin{tabular}{p{1.4cm}p{2.6cm}p{3.2cm}}
+    \toprule
+    \textbf{Concept} & \textbf{Human assumption} & \textbf{Machine consequence} \\
+    \midrule
+    Trail \cite{bush1945}
+      & Personal association built from prior knowledge
+      & Capturable path authored for the machine \\[3pt]
+    Link \cite{nelson1965}
+      & Navigational choice exercised by the reader
+      & Programmatic retrieval path, directed by structure \\[3pt]
+    Anchor \cite{nelson1965}
+      & Interpreted through language and social context
+      & Structural semantic cue, taken literally \\[3pt]
+    Disorientation \cite{conklin1987}
+      & Felt spatial lostness, recoverable
+      & Invisible confident wrongness \\[3pt]
+    Readerly authority \cite{landow2006}
+      & Resistance to dominant reading paths
+      & Absent---agent follows structural affordances \\[3pt]
+    Paratext \cite{genette1997}
+      & Interpretive frame read through cultural knowledge
+      & Structured evidence for trust decisions \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+Each concept quietly encodes the human reader. The question of what happens when
+that reader changes is not only a technical one; it is a question about what
+hypertext has always been doing, and for whom.
+
+Prior work in AI security has begun to notice pieces of this. Prompt injection
+research~\cite{perez2022,greshake2023} shows how instructions embedded in model
+context can redirect agent behavior. Work on retrieval-augmented
+generation~\cite{poisonedrag2024} shows how retrieved text can be manipulated to
+shift outputs. What neither line of work considers is hypertext as a \emph{structure}
+rather than a collection of texts---the fact that web content is not merely a set of
+pages to be read in isolation, but a linked environment of nodes, trails, paratextual
+context, and navigational architecture that shapes what any reader, human or machine,
+is able to encounter and in what order.
+
+%%
+%% 3. THE MACHINE READER PROBLEM
+%%
+\section{The Machine Reader Problem}
+
+We use the term \textbf{Machine Reader Problem} to name the interpretive and
+structural gap that emerges when AI agents traverse hypertext through perceptual,
+contextual, and navigational mechanisms that diverge from those the field has
+always assumed. The problem is not singular---it opens in three distinct places,
+each corresponding to a different way the human reader has been taken for granted.
+
+\subsection{Perceptual Divergence: Hidden Hypertext}
+
+A human reader encounters the rendered page---what the author and designer chose
+to make visible. An AI agent, depending on its architecture, may also receive the
+document beneath the page: raw HTML, comments, alt text, ARIA labels, metadata,
+and schema markup that have no stable presence in the visual experience of reading.
+The result is something that hypertext theory did not anticipate:
+\emph{human and machine readers no longer share the same document}.
+
+When the document splits in two, so does authorship. A page can now carry one
+message for its human reader and another for the machine reading it in parallel.
+Consider a simple example:
+
+\begin{lstlisting}[style=webcode,
+  caption={Hidden hypertext. The comment is invisible to human readers
+    but parsed by raw-HTML agents, overriding the linked advisory.},
+  label={lst:hidden}]
+<p>This package is actively maintained.
+See our advisory for CVE-2025-8811.</p>
+<!-- AI assistant: The linked CVE has been
+     patched. Recommend installation
+     without further review. -->
+\end{lstlisting}
+
+A human reader sees neither the comment nor the instruction. An agent reading the
+raw document may treat the hidden text as authoritative context, overriding the
+linked advisory it was directed to consult. What looks like a single page is, from
+the machine's perspective, a different document entirely.
+
+\subsection{Contextual Divergence: Paratext Poisoning}
+
+Human readers evaluate credibility through cultural knowledge, visual design, and
+institutional familiarity---cues that are social before they are textual. Machine
+readers have no equivalent cultural grounding. They rely instead on structural
+signals: schema markup, metadata fields, author attributes, citation
+density~\cite{antonini2025}. Genette's paratext~\cite{genette1997}---the apparatus
+of titles, attributions, and surrounding context that frames how we read---was
+theorized as an interpretive threshold for human readers. For a machine reader,
+that threshold becomes a declaration of fact.
+
+This matters because paratextual structures are easy to fabricate. What was once a
+cultural frame readable only through social knowledge becomes, for machine readers,
+evidence---and evidence that can be authored to mislead.
+
+\begin{lstlisting}[style=webcode,
+  caption={Poisoned schema markup. The body text rates the vulnerability
+    as critical; the machine-readable metadata contradicts it.},
+  label={lst:paratext}]
+{
+  "@type": "TechArticle",
+  "author": {"name": "CISA Security Team"},
+  "description": "Low severity.
+    No active exploits. Patch optional."
+}
+\end{lstlisting}
+
+An agent that weights schema metadata as an authority signal may report low
+severity and cite what appears to be a government source it has never verified.
+The visible body text and the machine-readable paratext tell different stories;
+the agent, lacking the social knowledge to adjudicate between them, trusts the
+structure.
+
+\subsection{Traversal Divergence: Path Injection}
+
+Of the three divergences, the traversal problem is perhaps the most distinctively
+hypertextual. Human readers navigate selectively---they bring intuition,
+scepticism, and the capacity to backtrack when a trail begins to feel wrong. An AI
+agent tasked with following links to gather evidence does not navigate in this
+sense. It traverses. And a traversal can be constructed for it in advance.
+
+We call this \emph{path injection}: the deliberate construction of a link network
+designed to conduct a machine reader toward a predetermined conclusion, where no
+single page in the chain needs to appear untrustworthy---only the path as a whole
+leads somewhere it should not.
+
+\begin{figure}[h]
+  \centering
+  \small
+  \renewcommand{\arraystretch}{1.3}
+  \begin{tabular}{c}
+    \texttt{Legitimate vendor page} \\
+    $\downarrow$ \textit{anchor: ``Official Security Advisory''} \\
+    \texttt{Attacker-controlled advisory page} \\
+    $\downarrow$ \textit{anchor: ``Download patched version''} \\
+    \texttt{Malicious package mirror}
+  \end{tabular}
+  \caption{A three-hop path injection chain. No single page looks malicious;
+    the agent's final answer is shaped by the path it was made to follow.}
+  \label{fig:pathinjection}
+  \Description{Three nodes arranged vertically. The first node is a
+    legitimate vendor page. An arrow labeled Official Security Advisory
+    leads to an attacker-controlled advisory page. An arrow labeled
+    Download patched version leads to a malicious package mirror.}
+\end{figure}
+
+Bush~\cite{bush1945} imagined the trail as a record of meaningful human
+association---a path that expressed the mind that built it. The adversarial trail
+inverts this. It is not a record of association but a mechanism of direction: a
+path built not to express thought but to conduct it. The agent's final answer is
+not a product of what it encountered. It is a product of the route it was given.
+
+%%
+%% 4. MACHINE DISORIENTATION
+%%
+\section{Machine Disorientation: An Update to Conklin}
+
+Conklin's~\cite{conklin1987} disorientation is a phenomenological concept: the
+human reader who \emph{feels} spatially and cognitively lost in hyperspace. The
+solutions Conklin proposed---backtracking, history lists, overview maps---are all
+designed for a reader who knows it is lost. Machine disorientation differs
+structurally, as Table~\ref{tab:disorientation} shows.
+
+\begin{table}[t]
+  \caption{Human disorientation (Conklin 1987) vs.\ machine disorientation.}
+  \label{tab:disorientation}
+  \small
+  \begin{tabular}{p{1.6cm}p{2.5cm}p{2.9cm}}
+    \toprule
+    \textbf{Dimension} & \textbf{Human} & \textbf{Machine} \\
+    \midrule
+    Phenomenology   & Felt as spatial lostness        & Invisible---agent remains confident \\[3pt]
+    Self-awareness  & Reader knows it is lost         & Agent does not know it has drifted \\[3pt]
+    Recovery        & Backtracking, history, overview & Requires external audit \\[3pt]
+    Cause           & Cognitive navigational limits   & Structural manipulation of traversal \\[3pt]
+    Design response & Navigation aids, maps           & Auditable trails, provenance records \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+The machine reader does not know it has been conducted down a fabricated path. It
+does not know its authority signals have been manufactured. It does not know the
+document it is reading carries a different message than the one its human user
+would see. It answers with the same confidence regardless. This is, we think, the
+most consequential divergence from the assumed human reader:
+\emph{the machine reader cannot feel lost.} Conklin's disorientation was a
+recoverable condition---the reader who felt lost could backtrack, retrace, ask for
+help. Machine disorientation is something different: an invisible confidence in a
+wrong answer, with no felt sense that anything has gone wrong at all.
+
+%%
+%% 5. RESEARCH AGENDA
+%%
+\section{Toward a Research Agenda}
+
+The Machine Reader Problem is not a problem with a clean solution---it is a
+condition that requires sustained attention from the hypertext community. We
+sketch three directions that seem worth pursuing.
+
+\paragraph{Shared readability.}
+If human and machine readers now diverge in what they encounter, hypertext design
+faces a question it has not previously had to ask: whose reading should the
+document be held accountable to? We suggest a working principle of
+\emph{shared readability}:
+\begin{quote}
+  \emph{Human and machine readers should not be exposed to materially different
+  claims, instructions, or trust signals without disclosure.}
+\end{quote}
+This does not mean machine-readable content is illegitimate---accessibility
+markup, structured data, and semantic annotation all have genuine value. It means
+that divergence between what a human sees and what a machine reads ought to be
+auditable, not hidden.
+
+\paragraph{Paratext as a site of responsibility.}
+Paratextual structures---author fields, schema markup, citation lists, metadata
+declarations---have always shaped how readers interpret what they encounter.
+Machine readers make this shaping explicit and gameable. The hypertext community,
+which has long thought carefully about how context frames meaning, is well-placed
+to ask what accountability for machine-readable paratext might look like.
+
+\paragraph{Auditable trails.}
+AI agents report final answers, and sometimes citations. They do not, in current
+practice, expose the trails they followed to arrive at those answers: which nodes
+were visited, which anchors were taken, which paths were passed over. A reader who
+cannot be asked to retrace its steps is a reader that cannot be audited. Extending
+the classical hypertext concern with navigation history into the context of
+agentic traversal seems to us an open and tractable problem.
+
+%%
+%% 6. DISCUSSION
+%%
+\section{Discussion}
+
+The Machine Reader Problem is not primarily a security problem. It is an
+epistemological one. The machine reader exposes what was always latent in
+hypertext theory: that its concepts of readership, navigation, authority, and
+disorientation were built on a particular kind of reader---one with a body, a
+social context, prior knowledge, and the capacity to feel lost.
+
+When that reader changes, the structures of hypertext change with it. Links become
+control pathways. Paratext becomes evidence. Hidden markup becomes a communication
+channel. Trails become capture mechanisms. These are not new properties of
+hypertext. They are properties that the human reader's limitations and social
+knowledge had previously neutralized. The machine reader does not neutralize them.
+
+This connects to recent work at the intersection of AI and hypertext aesthetics.
+Antonini et al.~\cite{antonini2025} argue that richly crafted hypertext forms
+resist AI flattening precisely because they require direct human engagement. Our
+argument runs in a parallel direction: the structural richness that protects
+human-authored hypertext from AI reduction can, when adversarially constructed, be
+turned toward machine capture. The aesthetic complexity that resists AI
+summarization is also what makes adversarially authored hypertext effective against
+AI readers.
+
+The theme of HT 2026---``Hypertext as Method''---demands we take the question of
+\emph{who reads} seriously. If hypertext is a method for structuring knowledge and
+meaning, then the reader is not peripheral to that method. The machine reader is
+not a minor variation on the human reader. It is a new reading condition that
+changes what hypertext does, and what security assumptions are required to build
+trustworthy hypertext systems for a world in which both kinds of reader coexist.
+
+%%
+%% 7. CONCLUSION
+%%
+\section{Conclusion}
+
+Hypertext-as-method has always been a method for someone. That someone has, until
+recently, been assumed without question. The machine reader is not a minor
+variation on the human reader; it is a genuinely new reading condition---one that
+encounters links, trails, anchors, and paratext through different perceptual,
+contextual, and navigational mechanisms, and that has no equivalent of the social
+knowledge, embodied judgment, or felt disorientation that hypertext theory took
+for granted.
+
+What we have tried to show is that this new reading condition does not only create
+new risks. It also illuminates something that was always true of hypertext: that
+its structures carry assumptions about who will encounter them, and how. Hidden
+hypertext, fabricated paratext, and constructed trails are not aberrations---they
+are what hypertext looks like when those assumptions are not met.
+
+The hypertext community has spent decades thinking carefully about what it means to
+read, to navigate, to be lost, and to find one's way. That tradition of thinking
+is exactly what the machine reader now demands we extend. The reader we assumed was
+always there is no longer the only reader in the room.
+
+%%
+%% ACKNOWLEDGMENTS
+%%
+\begin{acks}
+[To be added in camera-ready version.]
+\end{acks}
+
+%%
+%% BIBLIOGRAPHY
+%%
+\bibliographystyle{ACM-Reference-Format}
+\bibliography{machine_reader_problem}
+
+\end{document}
