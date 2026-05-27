@@ -223,17 +223,35 @@ contextual, and navigational mechanisms that diverge from those the field has
 always assumed. The problem is not singular---it opens in three distinct places,
 each corresponding to a different way the human reader has been taken for granted.
 
+The connection to security is structural, not incidental. Each of the three
+divergences we describe exploits an existing feature of hypertext---one that
+worked safely when the reader was human and becomes dangerous when it is not.
+The attack surfaces are not new weaknesses added to the web. They are properties
+of how hypertext has always been built: layered documents, paratextual framing,
+linked trails. Those properties were safe because the human reader brought social
+knowledge, embodied judgment, and navigational intuition to bear on them. Remove
+that reader, and the same structures become mechanisms of capture.
+
 \subsection{Perceptual Divergence: Hidden Hypertext}
 
-A human reader encounters the rendered page---what the author and designer chose
-to make visible. An AI agent, depending on its architecture, may also receive the
-document beneath the page: raw HTML, comments, alt text, ARIA labels, metadata,
-and schema markup that have no stable presence in the visual experience of reading.
-The result is something that hypertext theory did not anticipate:
-\emph{human and machine readers no longer share the same document}.
+Hypertext has always separated source from rendering. That separation is the
+foundational move of markup: the author writes a source document; the browser
+presents a rendered view; the reader encounters the presentation. For human
+readers, this separation was invisible and inconsequential---the rendered page
+\emph{was} the document. No one thought of ``the document'' as something
+different from what appeared on screen, because no one who read hypertext could
+see anything else.
 
-When the document splits in two, so does authorship. A page can now carry one
-message for its human reader and another for the machine reading it in parallel.
+Machine readers break this assumption. An AI agent traversing a page does not
+encounter the rendered presentation; it encounters the source. And the source can
+carry content that the rendered page does not: comments, alt text, ARIA labels,
+metadata, schema markup---layers that were always there, always machine-readable,
+and always invisible to human readers. The security consequence follows directly.
+A page can now carry one message for the human reader and a different one for the
+machine reading it in parallel, and hypertext's own architecture makes this
+possible. This is not a flaw introduced into hypertext. It is what hypertext has
+always been, encountered by the wrong kind of reader.
+
 Consider a simple example:
 
 \begin{lstlisting}[style=webcode,
@@ -249,31 +267,37 @@ See our advisory for CVE-2025-8811.</p>
 
 A human reader sees neither the comment nor the instruction. An agent reading the
 raw document may treat the hidden text as authoritative context, overriding the
-linked advisory it was directed to consult. What looks like a single page is, from
-the machine's perspective, a different document entirely.
-
-This attack surface is not hypothetical. Recent work demonstrates that accessibility-layer
-markup and hidden HTML structures in live web environments can carry injected instructions
-that redirect agent behavior~\cite{htmlaccessibility2025}. What that line of work does not
-explore is what this means for hypertext as a structure of knowledge: a page that carries
-two materially different documents is not a corrupted page---it is a new kind of document
-that hypertext theory has no name for yet.
+linked advisory it was directed to consult. The exploit works not because
+something was added to the web but because the source layer---present in every
+HTML document ever written---is now being read by someone who was never supposed
+to be the reader. Recent work confirms this is already happening in deployed
+systems: accessibility-layer markup and hidden HTML structures in live web
+environments have been used to inject instructions that redirect agent
+behavior~\cite{htmlaccessibility2025}. What that work does not address is the
+deeper implication: a page that carries two materially different documents is not
+a corrupted page. It is a new kind of hypertext artifact, one that hypertext
+theory has no vocabulary for yet.
 
 \subsection{Contextual Divergence: Paratext Poisoning}
 
-Human readers evaluate credibility through cultural knowledge, visual design, and
-institutional familiarity---cues that are social before they are textual. Machine
-readers have no equivalent cultural grounding. They rely instead on structural
-signals: schema markup, metadata fields, and source labels---cues that recent
-work shows can override content in LLM trust
-decisions~\cite{llmtrust2025,labeleffects2026}. Genette's paratext~\cite{genette1997}---the apparatus
-of titles, attributions, and surrounding context that frames how we read---was
-theorized as an interpretive threshold for human readers. For a machine reader,
-that threshold becomes a declaration of fact.
+Genette theorized paratext as an interpretive \emph{threshold}---the titles,
+attributions, publisher imprints, and surrounding context that frame how a reader
+approaches a text~\cite{genette1997}. That threshold functions for human readers
+because it is processed through cultural knowledge. We know a government seal does
+not prove government authorship. We notice when institutional framing seems
+implausible. We bring to the paratextual frame a lifetime of social experience
+that tells us how much weight to give it. Paratext works as a threshold, not a
+declaration, because human readers do not take it literally.
 
-This matters because paratextual structures are easy to fabricate. What was once a
-cultural frame readable only through social knowledge becomes, for machine readers,
-evidence---and evidence that can be authored to mislead.
+Machine readers have no equivalent mechanism. For an AI agent, the paratextual
+frame is not a threshold to interpret---it is structured data to process. Schema
+markup, author fields, and metadata declarations are not read through cultural
+knowledge; they are weighted as authority signals. Recent work confirms this: LLMs
+consistently allow source labels to override content in trust
+decisions~\cite{llmtrust2025,labeleffects2026}. Genette's threshold collapses
+into a declaration of fact, and declarations can be fabricated. What was once
+protected by the difficulty of passing social scrutiny is now just a field in a
+JSON object.
 
 \begin{lstlisting}[style=webcode,
   caption={Poisoned schema markup. The body text rates the vulnerability
@@ -295,11 +319,19 @@ structure.
 
 \subsection{Traversal Divergence: Path Injection}
 
-Of the three divergences, the traversal problem is perhaps the most distinctively
-hypertextual. Human readers navigate selectively---they bring intuition,
-scepticism, and the capacity to backtrack when a trail begins to feel wrong. An AI
-agent tasked with following links to gather evidence does not navigate in this
-sense. It traverses. And a traversal can be constructed for it in advance.
+Bush imagined the trail as hypertext's core contribution: a record of human
+association, a path through information that expressed the mind that built
+it~\cite{bush1945}. Nelson extended this into navigational freedom---the reader's
+ability to exercise choice at every link, to follow some paths and not
+others~\cite{nelson1965}. Both visions share the same foundational guarantee:
+the trail is the reader's. It reflects their associations, their choices, their
+intent. No one authors a trail for someone else, because the whole point of the
+trail is that it emerges from the act of reading.
+
+Machine readers remove this guarantee. An AI agent does not build a trail; it
+is given one. It follows links not because they resonate with prior knowledge or
+feel right, but because its task instruction said to follow them. This makes the
+trail---hypertext's most humanist structure---into a mechanism of direction.
 
 We call this \emph{path injection}: the deliberate construction of a link network
 designed to conduct a machine reader toward a predetermined conclusion, where no
@@ -326,11 +358,9 @@ leads somewhere it should not.
     Download patched version leads to a malicious package mirror.}
 \end{figure}
 
-Bush~\cite{bush1945} imagined the trail as a record of meaningful human
-association---a path that expressed the mind that built it. The adversarial trail
-inverts this. It is not a record of association but a mechanism of direction: a
-path built not to express thought but to conduct it. The agent's final answer is
-not a product of what it encountered. It is a product of the route it was given.
+The adversarial trail is Bush's trail inverted. Where Bush's trail recorded
+thought, the injected path conducts it. The agent's final answer is not a product
+of what it encountered. It is a product of the route it was given.
 
 %%
 %% 4. MACHINE DISORIENTATION
