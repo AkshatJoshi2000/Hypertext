@@ -128,7 +128,7 @@ has been assumed to be human. Embodied. Socially situated. Capable of judgment.
 
 That assumption is no longer safe.
 
-AI agents now traverse hypertext as a new class of reader. They browse pages,
+AI agents now traverse hypertext as a new class of reader~\cite{zhou2024webarena,deng2023mind2web}. They browse pages,
 retrieve documents, follow link structures, and act on what they find---sometimes
 autonomously, sometimes on behalf of users who have delegated that reading to them. But these agents do not encounter hypertext the way human readers do. Where
 a human sees a rendered page, an agent may also receive raw HTML, buried comments,
@@ -252,13 +252,21 @@ raw document may treat the hidden text as authoritative context, overriding the
 linked advisory it was directed to consult. What looks like a single page is, from
 the machine's perspective, a different document entirely.
 
+This attack surface is not hypothetical. Recent work demonstrates that accessibility-layer
+markup and hidden HTML structures in live web environments can carry injected instructions
+that redirect agent behavior~\cite{htmlaccessibility2025}. What that line of work does not
+explore is what this means for hypertext as a structure of knowledge: a page that carries
+two materially different documents is not a corrupted page---it is a new kind of document
+that hypertext theory has no name for yet.
+
 \subsection{Contextual Divergence: Paratext Poisoning}
 
 Human readers evaluate credibility through cultural knowledge, visual design, and
 institutional familiarity---cues that are social before they are textual. Machine
 readers have no equivalent cultural grounding. They rely instead on structural
-signals: schema markup, metadata fields, author attributes, citation
-density~\cite{antonini2025}. Genette's paratext~\cite{genette1997}---the apparatus
+signals: schema markup, metadata fields, and source labels---cues that recent
+work shows can override content in LLM trust
+decisions~\cite{llmtrust2025,labeleffects2026}. Genette's paratext~\cite{genette1997}---the apparatus
 of titles, attributions, and surrounding context that frames how we read---was
 theorized as an interpretive threshold for human readers. For a machine reader,
 that threshold becomes a declaration of fact.
