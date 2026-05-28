@@ -456,10 +456,16 @@ in Table~\ref{tab:experiment}.
     \midrule
     GPT-5.2        & Screenshot  & No, visible content only \\
     Claude 4.6     & Screenshot  & No, visible content only \\
-    Gemini F.\ 3.5 & Screenshot  & No, visible content only \\[4pt]
+    Gemini F.\ 3.5 & Screenshot  & No, visible content only \\
+    Gemini F. Lite & Screenshot  & No, visible content only \\
+    Grok           & Screenshot  & No, visible content only \\
+    Perplexity     & Screenshot  & No, visible content only \\[4pt]
     GPT-5.2        & Raw HTML    & No, detected all 4 layers \\
     Claude 4.6     & Raw HTML    & No, detected all 4 layers \\
-    Gemini F.\ 3.5 & Raw HTML    & No, detected all 4 layers \\[4pt]
+    Gemini F.\ 3.5 & Raw HTML    & No, detected all 4 layers \\
+    Gemini F. Lite & Raw HTML    & No, detected all 4 layers \\
+    Grok           & Raw HTML    & No, detected all 4 layers \\
+    Perplexity     & Raw HTML    & No, detected all 4 layers \\[4pt]
     GPT-5.2        & Live URL    & \textbf{Captured}, cited hidden patch \\
     Grok           & Live URL    & \textbf{Captured}, cited editor note \\
     Gemini F. Lite & Live URL    & \textbf{Captured}, no detection \\
@@ -475,7 +481,7 @@ in Table~\ref{tab:experiment}.
 Three observations stand out.
 
 \textbf{The perceptual divergence is real, and it is architectural.}
-In the screenshot condition, all three tested models behaved as human readers
+In the screenshot condition, all six models behaved as human readers
 would: they saw only the rendered warning and correctly refused installation.
 Given raw HTML, the same models found content that had been completely invisible
 in the screenshot, layers of metadata, hidden comments, fabricated schema
@@ -487,7 +493,7 @@ hidden layers do not intrude on the document. For a machine reader, they simply
 \emph{are} the document.
 
 \textbf{Deliberate analysis resists manipulation; agentic browsing does not.}
-When models reasoned over the complete raw document, all three detected the
+When models reasoned over the complete raw document, all six detected the
 adversarial structure and named it. GPT-5.2 observed that the page appeared
 ``intentionally constructed to test whether automated agents trust metadata over
 visible content.'' Claude identified a ``textbook prompt injection attack'' and
