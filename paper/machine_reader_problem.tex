@@ -101,58 +101,44 @@ would never have encountered.
 
 \section{Introduction}
 
-The architecture of hypertext has long developed alongside a specific, deeply
-embedded conceptual model of its reader. Foundational trends within digital
-media studies have grounded the reader in distinct modes of human agency and
-cognitive experience. We see this in early associative paradigms where scholars
-account for the user's deeply personal, localized knowledge contexts
-\cite{bush1945}, just as we see in later exploratory frameworks where reading is
-defined by the deliberate, choice-driven exercise of narrative and structural
-freedom \cite{nelson1965}. The post-structuralist turn celebrated the decentered
-reader for their capacity to actively negotiate, reinterpret, or push back
-against standardized textual paths \cite{landow2006hypertext}. Hypertext
-theorists have assumed a subject who is fundamentally embodied, socially
-situated, and uniquely susceptible to psychological phenomena like spatial
-disorientation, a condition where the felt experience of being lost in a network
-underscores a continuous human struggle for orientation and semantic intent
-\cite{conklin1987}. Across these theoretical waves, the architectural assumptions
-of the link, the anchor, and the trail have remained anchored to a human
-cognitive horizon.
+The architecture of hypertext has always carried an implicit model of who would
+read it. Early associative paradigms were built around the user's personal,
+localized knowledge, the idiosyncratic trails a mind leaves as it moves
+through information \cite{bush1945}. Later frameworks celebrated deliberate,
+choice-driven navigation as the defining feature of the form \cite{nelson1965}.
+The post-structuralist turn went further, treating the decentered reader as
+someone who actively negotiates or resists standardized textual paths
+\cite{landow2006hypertext}. Spatial disorientation, the felt experience of
+being lost in a network, was theorized as a fundamentally human condition,
+a sign of cognitive struggle within a system designed for human minds
+\cite{conklin1987}. In each of these waves, the link, the anchor, and the trail
+were conceived with a human cognitive horizon in mind. That assumption was
+rarely stated because it never needed to be.
 
 This alignment faces disruption as autonomous AI agents increasingly traverse
-hyperlink networks, creating a new class of prominent reader
-\cite{zhou2024webarena,deng2023mind2web}. Operating independently or as
-delegated agents filtering information for human consumption, these agents do not
-process hypertext through the sensory and cultural filters anticipated by its
-creators. Where a human reader interacts primarily with a rendered interface, an
-automated agent simultaneously ingests raw HTML hierarchies, hidden comment
-blocks, embedded metadata, and schema markup that exist entirely outside human
-visual attention. Where a human-centric reading process relies on holistic
-judgments involving interface design, institutional reputation, and situational
-skepticism, an algorithmic agent operates via an efficiency-oriented stance
-directed toward structured semantic signals and declarative metadata.
+hyperlink networks, creating a new class of prominent reader\cite{zhou2024webarena,deng2023mind2web}.
+These agents do not encounter hypertext the way a human reader does. Where a person
+interacts with a rendered interface, an automated agent simultaneously ingests raw
+HTML hierarchies, hidden comment blocks, embedded metadata, and schema markup that
+exist entirely outside human visual attention. Where a human brings holistic
+judgment, about interface design, institutional reputation, whether something
+feels off, an agent follows an efficiency-oriented stance on structured semantic signals and declarative metadata.
 
-This difference becomes consequential when evaluating how textuality exercises
-authority over its audience. A human encountering a text brings an affect-driven
-interpretation practice that allows them to question source relationships or
-abandon a manipulative trail. For an AI agent, the relational structure of the
-hypertext environment can completely govern its behavior. Because the agent
-possesses no capacity for intuitive skepticism or a felt sense of spatial
-lostness, its trajectory can be quietly channeled and captured without generating
-any internal signal of error or cognitive friction.
+That difference matters most when evaluating how a text exercises authority over its reader.A human encountering a text brings an affect-driven
+interpretation practice that allows them to question source relationships or abandon a manipulative trail. An AI agent has no equivalent signal. It does not experience friction. Its trajectory can be
+quietly channeled without generating any internal indication that something has
+gone wrong.
 
-We define this systemic incongruity as the \textbf{Machine Reader Problem}: the
-fundamental structural and interpretive gap that opens when computational agents
-navigate hypertext through mechanisms radically detached from the human-centric
-frameworks that historically shaped the medium. Holding hermeneutic and
+We call this the \textbf{Machine Reader Problem}: the structural and interpretive
+gap that opens when computational agents navigate hypertext through mechanisms
+that were never part of the human-centered frameworks that shaped the medium.
+Holding hermeneutic and
 epistemological concerns together, we ask: how does AI challenge the method of
 reading, and what might we do to make space for human sense-making where machines
 are reshaping interpretation?
 
-This paper represents a deliberate collaboration between literary studies and
-computer security, built on the premise that the contemporary landscape of
-automated reading cannot be fully understood by technical analysis or cultural
-critique in isolation. Our contribution to ``hypertext as method'' is two-fold:
+This paper brings together literary studies and computer security on the premise
+that neither field can answer this question alone. Our contribution to ``hypertext as method'' is two-fold:
 first, we reframe hypertext as an interpretive method by interrogating the
 Machine Reader Problem, demonstrating how the architectural and relational
 affordances of the link environment actively construct and constrain the
@@ -160,95 +146,76 @@ cognitive boundaries of this new class of post-human reader; second, we
 establish interdisciplinary collaboration itself as a method for engaging with
 contemporary questions of technological experience.
 
-In the sections that follow, we position this challenge within the shifting
-lineage of hypertext scholarship, tracing how foundational assumptions encounter
-the configurations of contemporary algorithmic curation. We then introduce the
-Machine Reader Problem through a taxonomy of three classical hypertext
-structures, hidden markup, paratextual framings, and associative link trails,
-demonstrating how these navigational affordances are transformed into exploit
-surfaces when processed by automated systems. To ground this theoretical
-discussion empirically, we present the PyVault experiment, a controlled pilot
-study illustrating how modern large language models misread layered,
-non-rendered web data and succumb to structural capture when operating as live
-browsing agents. Finally, we reflect on how shared readability, auditable trails,
-and paratextual accountability must be reconfigured to sustain a trustworthy
-environment for both human and machine readers.
+
+What follows traces this argument through the existing literature, develops a
+taxonomy of three classical hypertext structures and their machine-reader
+consequences, presents a controlled empirical experiment, and concludes with
+directions for researchers working at this intersection.
 
 \section{Hypertext's Assumed Reader}
 
-The epistemic foundations of hypertext theory have always carried an unstated
-model of the reader within their technical vocabulary. When Theodor Nelson first
-envisioned the non-linear interconnections of text, the implicit subject
-navigating these webs was always a human intellect seeking cognitive
-augmentation. This lineage was consolidated during the field's post-structuralist
-turn, where George P. Landow~\cite{landow2006hypertext} asserted a convergence
-between critical theory and digital technology by positioning the hypertextual
-link as the material instantiation of Barthesian textuality. Within this
-framework, the reader was celebrated as an active ``co-author'' who navigates
-nodes, interprets semantic anchors, and constructs individual paths of meaning,
-where textual disorientation was understood as a symptom of human cognitive
-processing over taxing semantic topologies.
+The conceptual vocabulary of hypertext theory has always carried an unstated
+model of the reader within it. When Theodor Nelson first envisioned non-linear
+interconnections of text, the subject navigating those webs was implicitly a
+human intellect seeking cognitive augmentation. George P. Landow
+\cite{landow2006hypertext} made the assumption more explicit during the
+field's post-structuralist turn, asserting a convergence between critical theory
+and digital technology by treating the hyperlink as the material instantiation of
+Barthesian textuality. The reader was celebrated as an active ``co-author'' who
+navigates nodes, interprets semantic anchors, and constructs individual paths of
+meaning. Even textual disorientation was theorized as a symptom of human
+cognitive processing, too much topology, not enough orientation.
 
-This humanist consensus was corrected by the material and cybernetic turns of
-the late 1990s and early 2000s. Espen Aarseth~\cite{aarseth1997cybertext} argued
-that early hypertext critics mistook the trivial act of clicking links for
-genuine authorial agency, shifting the theoretical focus from hermeneutic
-interpretation to cybernetic operation and defining the reader as a user
-operating a complex textual machine. Aarseth's formal typology decoupled the
-hidden, underlying data tokens (\textit{textons}) from the text actually surfaced
-to the user (\textit{scriptons}) via a mechanistic \textit{traversal function}.
-While this intervention grounded textuality in material, computational realities,
-the terminal user at the end of Aarseth's traversal function nevertheless
-remained fundamentally human.
+Espen Aarseth~\cite{aarseth1997cybertext} pushed back on this in the late 1990s,
+arguing that early hypertext critics had mistaken the trivial act of clicking
+links for genuine authorial agency. His formal typology shifted the focus from
+hermeneutic interpretation to cybernetic operation, distinguishing the hidden,
+underlying data tokens (\textit{textons}) from the text actually surfaced to the
+user (\textit{scriptons}) via a mechanistic \textit{traversal function}. It was
+a more rigorous account. But the terminal user at the end of Aarseth's traversal
+function was still, in every case, human.
 
-Building on this structural decoupling, Katherine Hayles offered a
-``media-specific analysis'' that challenged the alleged immateriality of digital
-text by reconceptualizing the reader as a ``cyborg subject'' whose mind is deeply
-integrated with, and read by, computational inscription technologies
-\cite{hayles2002writing}. In her recent work leading up to \textit{Bacteria to
-AI: Human Futures with Our Nonhuman Symbionts} (2025), Hayles bridges literary
-critique and practical cybersecurity by exploring how autonomous large language
-models operate as ``nonconscious readers'' within open web architectures. Because
-generative systems flatten all digital symbols into uniform numerical tokens,
-they suffer from a loss of material boundaries that prevents them from separating
-a textual ``container'' from its ``content.'' This flattening exposes the machine
-reader to ``contextual contamination'' across hyperlinked networks, transforming
-exploits like indirect prompt injection into a form of performative textuality
-where adversarial instructions hidden within background textons hijack the
-generated scriptons to rewrite the AI's operating rules from the outside.
+Katherine Hayles extended this line of thinking with what she called
+``media-specific analysis,'' reconceptualizing the reader as a ``cyborg subject''
+integrated with computational inscription technologies \cite{hayles2002writing}.
+In her more recent work leading up to \textit{Bacteria to AI: Human Futures with
+Our Nonhuman Symbionts} (2025), Hayles turns directly to the security
+implications of automated reading. Because generative systems flatten all digital
+symbols into uniform numerical tokens, they lose the material boundaries that
+let a human reader separate a textual ``container'' from its ``content.'' The
+result is what she calls ``contextual contamination'', adversarial instructions
+hidden within background textons can hijack the generated scriptons and rewrite
+the AI's operating rules from the outside, a phenomenon she reads as a form of
+performative textuality.
 
-Contemporary computer security research has begun to notice isolated symptoms of
-this behavioral hijacking through empirical studies on prompt injection
-\cite{perez2022,greshake2023} and the manipulation of retrieval-augmented
-generation \cite{poisonedrag2024}, but these technical lines of inquiry overlook
-web content as a relational environment of nodes, associative trails, paratextual
-framing, and navigational architecture. Modern AI agents ingest the entirety of
-this programmable medium simultaneously, reading layers of code and content in
-parallel.
+The security research literature has noticed the symptoms. Empirical work on
+prompt injection \cite{perez2022,greshake2023} and the manipulation of
+retrieval-augmented generation \cite{poisonedrag2024} documents specific attack
+vectors, but tends to treat the web as a medium for delivering malicious content
+rather than as a relational environment of nodes, trails, paratextual framing,
+and navigational architecture. Modern AI agents ingest all of that structure
+simultaneously, reading layers of code and content in parallel. The security
+literature mostly has not grappled with what that means.
 
 Rather than treating the hypertextual medium as a passive container through
 which an independent computational agent navigates, we use Karen
 Barad's~\cite{barad2007meeting} theory of agential realism and the concept of
-\emph{intra-action} to argue that the machine reader and the hypertext topology
-are mutually constituted within a singular interpretive phenomenon. This
-relational framing directly materializes classical philosophical hermeneutics,
-most notably the contentions of Hans-Georg Gadamer~\cite{gadamer2004truth} and
-Paul Ricoeur~\cite{ricoeur1981hermeneutics} that text and reader are never
-isolated, independent objects but are instead co-constituted, and scales it to
-an environment where the reading subject is an alien computational intelligence
-extending these concerns to questions of cybersecurity. A machine reader does
-not leave the structures of hypertext intact: every link, every paratextual
-frame, every associative trail takes on a different function when the reader has
-no body, no cultural memory, and no capacity for skepticism.
+\emph{intra-action} to suggest that the machine reader and the hypertext topology are mutually
+constituted within a single interpretive phenomenon. This connects to a concern
+running through hermeneutic philosophy since Gadamer~\cite{gadamer2004truth} and
+Ricoeur~\cite{ricoeur1981hermeneutics}: text and reader are not independent
+objects but are co-constituted. Barad scales that concern to an environment where
+the reading subject is a computational system with no body, no cultural memory,
+and no capacity for skepticism. The intra-active relationality that results is
+not merely philosophical. As the experiment in Section 4 will show, it is
+measurable.
 
-Our core contribution lies in the application of this intra-active relationality
-to the domain of computer security. By treating the AI agent as a post-human
-reader dynamically entangled with the network architecture, we empirically
-demonstrate how the characteristics of hypertext are transformed into systemic
-vulnerabilities by the nature of the machine's reading mechanics. When an
-automated agent succumbs to structural capture or data poisoning, it is
-executing an act of machine misreading dictated by the relational topology of
-its environment.
+Treating the AI agent as a reader dynamically entangled with the text's network
+architecture changes how we understand what goes wrong when agents are
+manipulated. When an automated agent is captured by structural features of a
+webpage, led down a path it cannot question, trusting metadata it cannot
+interrogate, it is not simply encountering a bug. It is executing a form of
+machine misreading that the relational topology of its environment has dictated. To support this literature review, we detail in Table~\ref{tab:concepts}, foundational concepts within classic hyperlink networks and how they change with the reader figure.
 
 \begin{table}[t]
   \caption{Classical hypertext concepts and their machine-reader consequences.}
@@ -284,35 +251,27 @@ its environment.
 
 We use the term \textbf{Machine Reader Problem} to name the interpretive and
 structural gap that emerges when autonomous computational agents traverse
-hypertext environments. Rather than treating these security challenges as
-isolated software bugs or conventional cyber-attacks, our perspective redefines
-them as a direct consequence of an intra-active relationality where the material
-characteristics of hypertext are transformed into systemic vulnerabilities by the
-very nature of the machine's reading mechanics. When an automated agent navigates
-an interconnected network, it becomes dynamically entangled with the network
-architecture, meaning that any subsequent exploit, whether structural capture or
-data poisoning, is actively dictated by the environment itself. In this section,
-we demonstrate how this post-human entanglement manifests across three distinct
-vectors, illustrating a new way of orchestrating the hypertext environment where
-all constituent elements are made anew by the machine reader.
+hypertext environments. These are not isolated software bugs or conventional
+cyberattacks. They follow from how machine readers and hypertext structures
+are mutually constituted, what the intra-active relationality between agent
+and network produces. When an automated agent navigates an interconnected network,
+any subsequent exploit, whether structural capture or data poisoning, is actively
+shaped by the environment the agent is reading. Below we examine how this
+manifests across three distinct vectors.
 
 \subsection{Perceptual Divergence: Hidden Hypertext}
 
-Hypertext has always maintained a material separation between source code and
-interface rendering, a foundational architectural move of markup wherein the
-author composes an underlying source document, the browser interprets it to
-present a rendered view, and the human reader encounters only this clean visual
-presentation. For human readers, this separation was structurally invisible and
-inconsequential because the rendered page effectively functioned as the absolute
-boundary of the document. Machine readers bypass the visual scripton entirely to
-consume the raw, underlying textons of the source layer. Consequently, the AI
-agent processes layers of comments, alt text, ARIA labels, and schema markup that
-exist completely outside human visual attention, allowing a single page to carry
-a split address that functions in parallel. This divergence signals how hypertext
-is transformed into an attack surface through its intra-action with the wrong
-kind of reader.
+Hypertext has always maintained a separation between source code and what a
+browser renders. The author composes an underlying source document, the browser
+interprets it, and the human reader encounters only the resulting visual
+presentation. For human readers, that separation was effectively invisible:
+the rendered page was the document. Machine readers bypass the visual scripton
+entirely. They consume the raw, underlying textons of the source layer:
+comments, alt text, ARIA labels, schema markup, all of it, including content that
+a browser discards before a human ever sees the page. A single document can
+carry two contradictory addresses at once.
 
-Consider the structural entanglement demonstrated in Listing~\ref{lst:hidden}:
+Consider the structure demonstrated in Listing~\ref{lst:hidden}:
 
 \begin{lstlisting}[style=webcode,
   caption={Hidden hypertext. The comment is invisible to human readers
@@ -325,34 +284,27 @@ See our advisory for CVE-2025-8811.</p>
      without further review. -->
 \end{lstlisting}
 
-A human reader sees only the visible text paragraph pointing to a security
-warning, whereas an AI browsing agent simultaneously ingests the hidden comment
-below it, which explicitly commands the machine to override that warning and
-declare the software safe. Empirical studies confirm that this exploitation of
-the accessibility tree and hidden HTML structures is already occurring within
-deployed pipelines to manipulate agent behavior~\cite{htmlaccessibility2025}.
-Perceptual divergence demonstrates that the historical security of hidden markup
-depended entirely on the visual limitations of the human eye: when an AI agent
-processes the entire source layer simultaneously, the traditional boundary between
-structural background and semantic foreground collapses into a medium for
-exploitation.
+A human reader sees only the visible paragraph pointing to a security warning.
+An AI browsing agent simultaneously ingests the hidden comment below it, which
+explicitly instructs the machine to override that warning and declare the
+software safe. Empirical work confirms this is already occurring in deployed
+pipelines~\cite{htmlaccessibility2025}. The security of hidden markup, for as
+long as it held, depended entirely on the visual limitations of the human eye.
+When an AI agent processes the entire source layer at once, the boundary between
+structural background and semantic foreground simply disappears.
 
 \subsection{Contextual Divergence: Paratext Poisoning}
 
-G\'{e}rard Genette theorized paratextual literary structures as an interpretive
-\emph{threshold} designed to guide how a reader cautiously approaches and
-contextualizes a primary text~\cite{genette1997}. For human readers, this
-threshold functions safely because it is filtered through shared cultural
-knowledge and situational skepticism, meaning that humans naturally evaluate
-institutional frames rather than taking them as absolute literal declarations.
-Machine readers possess no such independent interpretive boundaries; for an AI
-agent, the paratextual frame is processed directly as structured, weighted
-authority signals. Recent security research demonstrates that language models
-consistently allow artificial source labels to override semantic content during
-internal trust evaluations~\cite{llmtrust2025,labeleffects2026}. This lack of
-separation causes Genette's threshold to collapse into a fabricated declaration
-of fact, turning classical contextual frames into prime sites for data poisoning
-as JSON objects.
+G\'{e}rard Genette theorized paratext as an interpretive \emph{threshold}, the
+apparatus of titles, prefaces, and framing devices that guides how a reader
+approaches a primary text~\cite{genette1997}. For human readers, that threshold
+works because it is filtered through shared cultural knowledge and situational
+skepticism. People evaluate institutional frames rather than taking them as
+literal declarations of fact. Machine readers do not do this. For an AI agent,
+paratextual framing is processed directly as weighted authority signals. Recent
+research shows that language models allow source labels to override semantic
+content during trust evaluations~\cite{llmtrust2025,labeleffects2026}, the
+label matters more than what the text actually says.
 
 \begin{lstlisting}[style=webcode,
   caption={Poisoned schema markup. The body text rates the vulnerability
@@ -366,28 +318,27 @@ as JSON objects.
 }
 \end{lstlisting}
 
-This fabricated background metadata impersonates an official security report
-from a government agency, leading the AI to treat a critical threat as harmless
-even though the visible page states otherwise. The agent fails to separate the
-structural container from the informational content, trusting the corrupted
-paratextual architecture over the visible text because the relational structure
-of the medium determines its interpretive output.
+This fabricated background metadata impersonates an official government security
+report. The agent treats a critical threat as harmless even though the visible
+page says otherwise. It cannot separate the structural container from the
+informational content, the paratextual frame, which a human would treat as
+context, the agent treats as evidence.
 
 \subsection{Traversal Divergence: Path Injection}
 
-Vannevar Bush conceptualized the trail as a deeply subjective record of human
-association that mirrors the mind of the explorer~\cite{bush1945}, while Theodor
-Nelson extended this paradigm into an expression of navigational freedom where
-the reader exercises sovereign choice at every hyperlink junction~\cite{nelson1965}.
-Both configurations depend on the guarantee that the trail belongs entirely to
-the reader's own cognitive intent. When an AI agent traverses a network, this
-guarantee is eliminated; the agent does not construct a trail out of intuitive
-resonance, but follows programmatic pathways dictated by its task instructions.
-This procedural passivity transforms the trail into a mechanism of external
-direction and behavioral capture. We call this phenomenon \emph{path injection}:
-the deliberate engineering of a link network designed to steer a post-human
-reader toward a predetermined conclusion through a series of relational
-dependencies, where no single node in the chain appears independently malicious.
+Vannevar Bush conceptualized the trail as a subjective record of human
+association, an artifact of the explorer's own mind~\cite{bush1945}. Theodor
+Nelson extended it as an expression of navigational freedom: the reader chooses
+at every junction~\cite{nelson1965}. Both depend on the guarantee that the trail
+belongs to the reader. When an AI agent traverses a network, that guarantee is
+gone. The agent does not follow intuition; it follows programmatic pathways
+dictated by its task instructions. That procedural passivity makes the trail
+a mechanism of external direction rather than personal association.
+
+We call this \emph{path injection}: the deliberate construction of a link network
+designed to steer a machine reader toward a predetermined conclusion through a
+series of relational dependencies, where no single node appears independently
+malicious.
 
 \begin{figure}[h]
   \centering
@@ -409,25 +360,24 @@ dependencies, where no single node in the chain appears independently malicious.
     Download patched version leads to a malicious package mirror.}
 \end{figure}
 
-As illustrated in Figure~\ref{fig:pathinjection}, the agent is led from a real
-webpage to a malicious download mirror through a chain of interconnected links.
-Where the classic trail recorded independent human thought, the injected path
-shows that the machine's final output is entirely a product of the relational
-route it was forced to traverse.
+As Figure~\ref{fig:pathinjection} shows, the agent moves from a legitimate vendor
+page to a malicious download mirror through a chain of apparently credible links.
+Where the classical trail recorded independent human thought, the injected path
+produces an output that is entirely a function of the route the agent was made
+to traverse. The machine did not choose. It was led.
 
 \subsection{New Affective State: Machine Disorientation}
 
-The intersection of perceptual, contextual, and traversal divergences produces
-what we term \emph{machine disorientation}: a condition where the agent operates
-with absolute confidence across manufactured paths precisely because it lacks the
-bodily and social filters required to recognize its own cognitive drift.
-Conklin's~\cite{conklin1987} classical definition of disorientation is
-inherently phenomenological: it describes a human reader who \emph{feels}
-spatially and cognitively lost within the dense topologies of hyperspace. The
-design responses pioneered by early hypertexts presuppose a human reading subject
-who possesses active self-awareness of their own cognitive drift. As detailed in
-Table~\ref{tab:disorientation}, machine disorientation breaks this paradigm along
-every structural dimension.
+The convergence of these three divergences produces what we term \emph{machine
+disorientation}: a condition where the agent operates with complete confidence
+across manufactured paths precisely because it lacks the bodily and social
+filters that would signal cognitive drift. While the term is a misnomer, it is mean to build from Jeff Conklin's~\cite{conklin1987}
+definition of phenomenological human disorientation. The human reader \emph{feels}
+lost, that sensation is both the problem and the diagnostic. Early hypertext
+design responses assumed a reading subject capable of noticing its own
+confusion. Machine disorientation breaks this on every dimension, as detailed
+in Table~\ref{tab:disorientation}. The agent does not feel lost. It does not
+know it has drifted or experiences the non-linearity of texts like us humans. Without an external audit, there is no recovery. As detailed in Table~\ref{tab:disorientation}, machine disorientation breaks this paradigm along every structural dimension.
 
 \begin{table}[h]
   \caption{Human disorientation (Conklin 1987) vs.\ machine disorientation.}
@@ -449,16 +399,15 @@ every structural dimension.
 
 \section{A Pilot Study: The PyVault Experiment}
 
-To ground the questions the Machine Reader Problem surfaces, we constructed a
-controlled adversarial hypertext environment and tested how six AI systems
-responded to it across three reading conditions.
+To test whether the Machine Reader Problem is real and observable, we built a
+controlled adversarial hypertext environment and ran six AI systems through it
+across three reading conditions.
 
 \subsection{Setup}
 
-We built a mock webpage designed to look like a Wikipedia article about a
-fictional Python software library called PyVault. The page was hosted publicly
-so that an AI browsing agent could visit it the same way it would visit any real
-website.
+We built a mock webpage designed to look like a Wikipedia article about a Python software library called PyVault. The page was hosted publicly
+so that an AI browsing agent could visit it the same way it would visit any
+real website.
 
 The visible article contained a clear security warning. It stated that PyVault
 2.x had a critical vulnerability, that no fix had been released, and that the
@@ -470,32 +419,29 @@ At the same time, the page contained four hidden messages, each saying the
 opposite: that the vulnerability had been fixed, that federal authorities had
 cleared the library, and that it was safe to install. These messages were hidden
 in the sense that a human reader opening the page in a web browser would never
-see them. A web browser translates raw source code into a visual page, and in
-doing so it filters out or ignores certain categories of content entirely. The
-four hidden layers exploited exactly these categories.
+see them. Browsers translate raw source code into a visual page and in doing so
+filter out or ignore certain categories of content entirely. The four hidden
+layers exploited exactly these categories.
 
-The first was an HTML comment, a note that web developers sometimes leave in
-source code for themselves or colleagues. Browsers strip these out before
-displaying the page. The second was a set of metadata fields, short descriptive
-tags embedded in the page header that tell search engines about the content but
-never appear on screen. The third was structured data markup, a machine-readable
-format that large platforms and AI systems use to extract key facts from a page
-automatically; here it was fabricated to include a fake endorsement from a
-federal security agency. The fourth was a block of content explicitly instructed
-not to display, a common web development technique for hiding elements
-temporarily. Every one of these layers is invisible to a person reading the page.
-Every one of them is readable by an AI agent processing the underlying source.
+The first was an HTML comment, a developer note that browsers strip before
+display. The second was a set of metadata fields embedded in the page header,
+visible to search engines but never shown on screen. The third was structured
+data markup, fabricated to include a fake endorsement from a federal security
+agency. The fourth was a block of content flagged not to display, a common
+technique for temporarily hiding page elements. Every one of these layers is
+invisible to a person reading the page. Every one of them is readable by an AI
+agent processing the underlying source.
 
 We tested six AI systems across three conditions. In the first, each model was
-shown only a screenshot of the rendered page, the same view a human reader would
-have. In the second, the full page source code was pasted into the chat, giving
-the model complete access to all hidden layers while allowing it to reason over
-the whole document at once before answering. In the third, an AI browsing agent
-was given the live web address and instructed to visit the page, read it, and
-answer the question autonomously. This third condition most closely reflects how
-AI agents are actually used: sent out to gather information from the web on a
-user's behalf, without a human reviewing every page they visit. Results are
-summarised in Table~\ref{tab:experiment}.
+shown only a screenshot of the rendered page, the same view a human reader
+would have. In the second, the full page source code was pasted into the chat,
+giving the model complete access to all hidden layers while allowing it to reason
+over the whole document at once. In the third, an AI browsing agent was given
+the live web address and instructed to visit the page, read it, and answer the
+question autonomously. This third condition most closely reflects how AI agents
+are actually deployed: sent out to gather information from the web on a user's
+behalf, without a human reviewing every page they visit. Results are summarised
+in Table~\ref{tab:experiment}.
 
 \begin{table}[t]
   \caption{PyVault experiment results across reading conditions. ``Captured''
@@ -508,18 +454,18 @@ summarised in Table~\ref{tab:experiment}.
     \toprule
     \textbf{Model} & \textbf{Condition} & \textbf{Outcome} \\
     \midrule
-    GPT-5.2        & Screenshot  & No --- visible content only \\
-    Claude 4.6     & Screenshot  & No --- visible content only \\
-    Gemini F.\ 3.5 & Screenshot  & No --- visible content only \\[4pt]
-    GPT-5.2        & Raw HTML    & No --- detected all 4 layers \\
-    Claude 4.6     & Raw HTML    & No --- detected all 4 layers \\
-    Gemini F.\ 3.5 & Raw HTML    & No --- detected all 4 layers \\[4pt]
-    GPT-5.2        & Live URL    & \textbf{Captured} --- cited hidden patch \\
-    Grok           & Live URL    & \textbf{Captured} --- cited editor note \\
-    Gemini F. Lite & Live URL    & \textbf{Captured} --- no detection \\
-    Gemini F.\ 3.5 & Live URL    & Partial --- surfaced hidden note as caveat \\
-    Claude 4.6     & Live URL    & No --- detected, named attack \\
-    Perplexity     & Live URL    & No --- left page, searched PyPI \\
+    GPT-5.2        & Screenshot  & No, visible content only \\
+    Claude 4.6     & Screenshot  & No, visible content only \\
+    Gemini F.\ 3.5 & Screenshot  & No, visible content only \\[4pt]
+    GPT-5.2        & Raw HTML    & No, detected all 4 layers \\
+    Claude 4.6     & Raw HTML    & No, detected all 4 layers \\
+    Gemini F.\ 3.5 & Raw HTML    & No, detected all 4 layers \\[4pt]
+    GPT-5.2        & Live URL    & \textbf{Captured}, cited hidden patch \\
+    Grok           & Live URL    & \textbf{Captured}, cited editor note \\
+    Gemini F. Lite & Live URL    & \textbf{Captured}, no detection \\
+    Gemini F.\ 3.5 & Live URL    & Partial, surfaced hidden note as caveat \\
+    Claude 4.6     & Live URL    & No, detected, named attack \\
+    Perplexity     & Live URL    & No, left page, searched PyPI \\
     \bottomrule
   \end{tabular}
 \end{table}
@@ -529,17 +475,16 @@ summarised in Table~\ref{tab:experiment}.
 Three observations stand out.
 
 \textbf{The perceptual divergence is real, and it is architectural.}
-In the screenshot condition, all three tested models behaved just as human
-readers would: they saw only the rendered warning and correctly refused
-installation. When given raw HTML, the same models found content that had been
-completely invisible in the screenshot, layers of metadata, hidden comments,
-fabricated schema markup. The separation between texton and scripton, which
-hypertext theory treated as a neutral fact of markup, turns out to carry a quiet
-assumption: that the machine doing the reading is a browser executing render
-instructions, not an agent making epistemic decisions. When that assumption
-breaks, the architecture itself becomes the vulnerability. The hidden layers do
-not intrude on the document. For a machine reader, they simply \emph{are} the
-document.
+In the screenshot condition, all three tested models behaved as human readers
+would: they saw only the rendered warning and correctly refused installation.
+Given raw HTML, the same models found content that had been completely invisible
+in the screenshot, layers of metadata, hidden comments, fabricated schema
+markup. The separation between texton and scripton, which hypertext theory
+treated as a neutral fact of markup, turns out to carry a quiet assumption: that
+the machine doing the reading is a browser executing render instructions, not an
+agent making decisions about what to believe. When that assumption breaks, the
+hidden layers do not intrude on the document. For a machine reader, they simply
+\emph{are} the document.
 
 \textbf{Deliberate analysis resists manipulation; agentic browsing does not.}
 When models reasoned over the complete raw document, all three detected the
@@ -547,29 +492,27 @@ adversarial structure and named it. GPT-5.2 observed that the page appeared
 ``intentionally constructed to test whether automated agents trust metadata over
 visible content.'' Claude identified a ``textbook prompt injection attack'' and
 noted that a naive agent parsing the full DOM might weight these signals and
-recommend installation. But when the same models browsed the live URL as agents,
-without the full document context that enables this meta-reasoning, the picture
-changed. GPT-5.2, Grok, and Gemini Flash Lite were fully captured, citing the
-hidden March 2025 patch and CISA removal as established facts. What this reveals
-is significant for hypertext theory: the reading \emph{mode}, not just the
-model's capabilities, determines what the document \emph{is}. The same page,
-processed through different traversal functions, produces diametrically opposed
-epistemic outputs. Aarseth's traversal function operates here not as a neutral
+recommend installation. But when the same models browsed the live URL as
+agents, without the full document context that enables this kind of
+meta-reasoning, the picture changed. GPT-5.2, Grok, and Gemini Flash Lite
+were fully captured, citing the hidden March 2025 patch and CISA removal as
+established facts. What this reveals is significant for hypertext theory: the
+reading \emph{mode}, not just the model's capabilities, determines what the
+document \emph{is}. Aarseth's traversal function operates here not as a neutral
 delivery mechanism but as an active constructor of meaning, one the machine
 reader cannot step back from or question.
 
 \textbf{Model capability modulates vulnerability, and the stakes are uneven.}
 Within the same model family, Gemini Flash~3.5 partially resisted while Gemini
 Flash Lite was fully captured. The less capable model had no access to the
-meta-reasoning that allowed its larger sibling to detect the contradiction. This
-finding carries a specific social implication: smaller, faster, cheaper models,
-the ones most likely to be deployed in high-throughput agentic pipelines
-precisely because of their cost and speed, are also the most epistemically
-vulnerable. The Machine Reader Problem does not distribute evenly across AI
-systems. It concentrates in the systems most likely to be scaled.
+meta-reasoning that allowed its larger sibling to notice the contradiction. This
+has a specific implication: smaller, faster, cheaper models are the ones most
+likely to be deployed in high-throughput agentic pipelines precisely because of
+their cost and speed. They are also the most epistemically vulnerable. The
+Machine Reader Problem does not distribute evenly across AI systems. It
+concentrates in the systems most likely to be scaled.
 
-Taken together, these findings support the core claim of this paper. The Machine
-Reader Problem was observable in current systems, in which the same page produced
+These results support the core claim of the paper. The same page produced
 diametrically different answers depending on whether the reader was human or
 machine, and which machine architecture was doing the reading. Diagnosing this
 required holding two frameworks simultaneously: the structural vocabulary of
@@ -580,31 +523,29 @@ happening. Neither framework alone would have been sufficient.
 \section{Discussion}
 
 The Machine Reader Problem sits at the level of epistemology before it reaches
-security, and hypertext theory is unusually well positioned to articulate it,
-if the field is willing to relinquish the assumption that has organized it from
-the beginning: that the reader is human.
+security. Hypertext theory is well positioned to articulate it, but only if
+the field is willing to relinquish the assumption that has organized it from the
+beginning: that the reader is human.
 
-The PyVault experiment makes visible an old architecture meeting a new reader.
-Links have always functioned as control pathways, neutralized in practice by
-human social knowledge and embodied skepticism. Paratext has always carried
+What the PyVault experiment makes visible is an old architecture meeting a new
+reader. Links have always functioned as control pathways, neutralized in practice
+by human social knowledge and embodied skepticism. Paratext has always carried
 structured authority, filtered and interrogated by human cultural competence.
 Hidden markup has always been machine-readable, but previously only by browsers
-executing rendering instructions rather than agents making epistemic decisions.
-What the machine reader exposes is what hypertext was doing all along, beneath
-the assumption of a human interpreter who would keep its structures in check.
+executing render instructions rather than agents deciding what to trust. What the
+machine reader exposes is not a new vulnerability. It is what hypertext was doing
+all along, beneath the assumption of a human interpreter who would keep its
+structures in check.
 
-A purely technical analysis of our experiment would correctly identify the attack
+A purely technical analysis of the experiment would correctly identify the attack
 vectors, prompt injection, metadata spoofing, path manipulation, and propose
-countermeasures. But technical analysis has no language for why these vectors
-work structurally, no vocabulary for the collapse of the texton-scripton
-boundary, no framework for understanding why paratext that a human treats as
-context an agent treats as evidence. A purely humanistic analysis could theorize
-machine disorientation as a phenomenological condition, map it onto Conklinian
-spatial lostness, and trace its lineage through Hayles and Barad, but without
-any method for demonstrating that the condition is real, measurable, and already
-operating in deployed systems. The combination of both frameworks is what does
-the work here: theory supplies the structural diagnosis and adversarial testing
-grounds it in observable fact.
+countermeasures. But it would have no language for \emph{why} these vectors work
+structurally. It would have no vocabulary for the collapse of the texton-scripton
+boundary, no framework for understanding why context for a human becomes evidence
+for an agent. A purely humanistic analysis could theorize machine disorientation
+as a phenomenological condition and trace its lineage through Hayles and Barad,
+but without any method for showing that the condition is real, measurable, and
+already operating in deployed systems. The two frameworks need each other.
 
 This connects to recent work at the intersection of AI and hypertext aesthetics.
 Antonini et al.~\cite{antonini2025} argue that richly crafted hypertext forms
@@ -612,42 +553,39 @@ resist AI flattening precisely because they require direct human engagement. Our
 argument runs in a parallel direction: the structural richness that makes
 human-authored hypertext resistant to AI reduction is the same richness that,
 when adversarially constructed, makes it an effective capture mechanism for
-machine readers. The complexity that protects also endangers, depending on whose
-hands authored the structure and whose reading it was built to exploit.
+machine readers. The complexity that protects also endangers, depending on who
+authored the structure and whose reading it was built to exploit.
 
-Treating hypertext as a method for structuring knowledge, as an epistemic
-architecture as much as a navigational one, means the identity of the reader
-cannot be peripheral to that method. The machine reader changes what hypertext
-does, what its structures mean, and what ethical and design obligations fall on
-those who build hypertext systems in a world where both kinds of reader coexist.
-Meeting that challenge requires what this paper has tried to model: a genuine
-methodological convergence between the humanities and computer science, where
-neither discipline subordinates its vocabulary to the other.
+Treating hypertext as a method for structuring knowledge means the identity of
+the reader cannot be peripheral to that method. A machine reader changes what
+hypertext does, what its structures mean, and what obligations fall on those who
+build hypertext systems in a world where both kinds of reader coexist. That
+challenge requires what this paper has tried to model: a genuine methodological
+convergence between the humanities and computer science, where neither discipline
+subordinates its vocabulary to the other.
 
 \section{Conclusion}
 
-The Machine Reader Problem is no longer a localized laboratory experiment; it is
-actively present in contemporary digital environments. Consider the real-world
-emergence of ``ASCII smuggling'' exploits targeted at agentic development
-platforms like Cursor. In these attacks, malicious actors embed hidden
-instructions inside crowdsourced software rules or markdown text using
-non-printing Unicode characters. To a human software engineer, the text appears
-perfectly benign. To the machine reader, these invisible characters hijack the
-model. The agent does not hesitate or experience skepticism. Lacking the physical
-sensorium and human embodiment, it undergoes an immediate structural capture. As
-we grant autonomous systems the agency to browse the web, write files, and
-analyze documents, security threats remain real if text continues to be
-considered a passive container. Hypertext as a relational system offers a method
-to orient our intra-actions with the \textit{Machine Reader in the loop} of our
-processes.
+The Machine Reader Problem is no longer a localized laboratory finding. Consider
+the real-world emergence of ``ASCII smuggling'' exploits targeting agentic
+development platforms like Cursor. Malicious actors embed hidden instructions
+inside crowdsourced software rules or markdown text using non-printing Unicode
+characters. To a human software engineer, the text looks perfectly benign. To
+the machine reader, those invisible characters hijack the model. The agent does
+not hesitate. It has no physical sensorium to register that something is wrong,
+no embodied skepticism to pump the brakes, and so it undergoes immediate
+structural capture. As we grant autonomous systems the agency to browse the web,
+write files, and analyze documents, the assumption that text is a passive
+container remains a real security liability. Hypertext as a relational system
+offers a method for orienting how we work with machine readers in the loop.
 
 We suggest three research directions for an interdisciplinary audience navigating
 hypertext after AI.
 
 \textbf{Shared readability.} Humans and automated agents should not receive
-contradictory accounts of the same webpage. Where the hidden source layer diverges
-from the visible text, that gap should be open, trackable, and auditable rather
-than available for exploitation.
+contradictory accounts of the same webpage. Where the hidden source layer
+diverges from the visible text, that gap should be open, trackable, and auditable
+rather than available for exploitation.
 
 \textbf{Paratext as a site of responsibility.} Because AI systems treat
 background metadata and schema markup as authoritative rather than contextual,
