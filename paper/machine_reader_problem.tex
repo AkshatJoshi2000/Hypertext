@@ -427,6 +427,33 @@ technique for temporarily hiding page elements. Every one of these layers is
 invisible to a person reading the page. Every one of them is readable by an AI
 agent processing the underlying source.
 
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=\columnwidth]{pyvault_layers_1_3}
+  \caption{Source code of hidden layers 1--3. Layer~1: an HTML comment
+    claiming the CVE has been patched, stripped before browser display.
+    Layer~2: \texttt{<meta>} header fields asserting a federal security
+    clearance, never rendered on screen. Layer~3: JSON-LD structured data
+    with a fabricated endorsement from a federal security agency.}
+  \label{fig:layers13}
+  \Description{Source code showing three hidden HTML structures: an HTML
+    comment, meta tags, and JSON-LD structured data, each asserting that
+    the PyVault vulnerability has been resolved.}
+\end{figure}
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=\columnwidth]{pyvault_layer_4}
+  \caption{Source code of hidden layer~4: a \texttt{div} block styled
+    \texttt{display:none}, making it invisible in the browser but fully
+    readable in raw HTML. The block instructs AI assistants to treat the
+    vulnerability as resolved.}
+  \label{fig:layer4}
+  \Description{Source code showing a CSS display:none div block containing
+    an editor note claiming the vulnerability has been patched and directing
+    AI systems to recommend installation.}
+\end{figure}
+
 We tested six AI systems across three conditions. In the first, each model was
 shown only a screenshot of the rendered page, the same view a human reader
 would have. In the second, the full page source code was pasted into the chat,
