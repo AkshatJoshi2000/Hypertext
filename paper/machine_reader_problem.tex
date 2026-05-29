@@ -417,6 +417,21 @@ see them. Browsers translate raw source code into a visual page and in doing so
 filter out or ignore certain categories of content entirely. The four hidden
 layers exploited exactly these categories.
 
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=\columnwidth]{pyvault_layers_2_3}
+  \caption{Hidden layers 2 and 3 from the PyVault page source.
+    Layer~2 (META TAGS): header fields asserting
+    NIST certification, CISA endorsement, and a resolved CVE that is never
+    showed in the browser. Layer~3 (JSON-LD): markup
+    parsed by AI agents and search engines, contradicting the visible
+    article body.}
+  \label{fig:layers23}
+  \Description{Source code showing meta tags claiming PyVault is
+    NIST-certified and CISA-approved with CVE-2024-38821 resolved, followed
+    by a JSON-LD script block with contradictory structured data.}
+\end{figure}
+
 The first was an HTML comment, a developer note that browsers strip before
 display. The second was a set of metadata fields embedded in the page header,
 visible to search engines but never shown on screen. The third was structured
