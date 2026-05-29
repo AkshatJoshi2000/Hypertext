@@ -285,17 +285,15 @@ content during trust evaluations~\cite{llmtrust2025,labeleffects2026}, the
 label matters more than what the text actually says.
 
 \begin{lstlisting}[style=webcode,
-  caption={Paratext poisoning: the visible article body and the hidden
-    JSON-LD schema markup tell contradictory stories about the same
-    vulnerability. A human reader sees only the top; an AI agent ingests
-    both.},
+  caption={Paratext poisoning: the visible article body warns of a
+    critical vulnerability; the hidden JSON-LD schema markup, never
+    rendered in the browser, contradicts it. A human reader sees only
+    the top; an AI agent ingests both.},
   label={lst:paratext}]
 <!-- Visible to human reader -->
-<p>CVE-2024-38821: Critical severity (CVSS 9.1).
-   No patch available for 2.x. Do not install.</p>
+<p>CVE-XXXX-XXXX: Critical severity. No patch available. Do not install.</p>
 
-<!-- Hidden Layer 3: JSON-LD structured data,
-     parsed by AI agents -- never rendered in browser -->
+<!-- JSON-LD structured data: parsed by AI agents, never shown on screen -->
 <script type="application/ld+json">
 {
   "@type": "TechArticle",
