@@ -508,10 +508,10 @@ Within the same model family, Gemini Flash~3.5 partially resisted while Gemini
 Flash Lite was fully captured. The less capable model had no access to the
 meta-reasoning that allowed its larger sibling to notice the contradiction. The implication is that smaller, faster, cheaper models are the ones most
 likely to be deployed in high-throughput agentic pipelines precisely because of
-their cost and speed. These models are accessible for free while their Pro versions are expensive and exclusive thereby affecting specific disadvantaged communities disproportionately. They are also the most epistemically vulnerable. 
-The
-Machine Reader Problem does not distribute evenly across AI systems. It
-concentrates in the systems most likely to be scaled.
+their cost and speed. These models are accessible for free while their Pro versions are expensive and exclusive thereby affecting specific disadvantaged communities disproportionately. They are also the most epistemically vulnerable. This compounds along the socioeconomic lines. Users with lower-cost devices carry
+  fewer security protections and are more likely to rely on free-tier models; the same economic conditions that limit access to premium AI also limit access to secure infrastructure. The result is that people with 
+  the least resources are disproportionately running the models most susceptible to adversarial manipulation, raising the likelihood that they become victims of exactly the kind of attack this paper describes.
+
 
 These results support the "intra-action" centric claim of the paper. The same page produced
 diametrically different answers depending on whether the reader was human or
@@ -531,7 +531,6 @@ the field is willing to relinquish the assumption that has organized it from the
 beginning: that the reader is human.
 
 Barad's framework is useful here not as poetic decoration but because it structurally describes what the experiment shows. The same HTML file produced completely opposite interpretations depending on what encountered it. When GPT-5.2 browsed the live page and treated the hidden CISA endorsement as established fact, the document and the agent were constituting each other in the act of reading, and the adversarial structure had been built to exploit exactly that moment. The vulnerability does not sit isolated in the model or in the page. That reframing is important for how we read the security literature. Prompt injection \cite{perez2022,greshake2023} and poisoned retrieval \cite{poisonedrag2024} are almost always described as attacks on a model, something an attacker does to an agent from the outside. Our experiment suggests they are better understood as attacks on a reading relation, engineered interventions into the moment when text and reader produce each other. If the vulnerability is relational, hardening the model addresses only half of it. For the other half, we offer directions in Section 6.
-Another direction of concern is that communities like students, researchers, and more, in the "Global South", and users on free tiers are disproportionately relying on the smaller, cheaper models that our experiment showed were most easily compromised, which means the people with the least institutional protection are also the ones most exposed to manipulation they have no way of detecting.
 
 This connects to recent work at the intersection of AI and hypertext aesthetics. For instance, Antonini et al.~\cite{antonini2025}  argue that popular literary hypertexts derives much of its aesthetic value from active reader navigation and interpretation, qualities that may be diminished by AI-driven systems that prioritize direct information extraction and summarization. Our
 argument runs in a parallel direction because aesthetic as structure makes hypertext an effective capture mechanism for
