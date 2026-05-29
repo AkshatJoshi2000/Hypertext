@@ -31,8 +31,7 @@
 
 \begin{document}
 
-\title[The Machine Reader Problem]{The Machine Reader Problem: What AI Agents
-  Reveal About Hypertext as Method}
+\title[The Machine Reader Problem]{The Assumed Reader: AI Agents, Hypertext, and the Vulnerable Limits of Interpretation}
 
 \author{Akshat Joshi}
 \affiliation{%
@@ -51,23 +50,7 @@
 \renewcommand{\shortauthors}{Author One and Author Two}
 
 \begin{abstract}
-Hypertext theory has historically assumed a human reader, someone who interprets links
-through cultural knowledge, navigates trails by choice, and feels lost when
-disoriented. AI agents now traverse the same web, but they read the raw source
-underneath the rendered page, including comments, metadata, and structured markup
-that browsers silently filter before a human ever sees the content. Drawing on
-Aarseth's distinction between the underlying textons of a document and the
-surface text a reader encounters, and on Genette's account of paratext as an
-interpretive threshold, we argue that these structures were only stable because
-human readers had the skepticism to keep them in check. We call the gap that
-opens without that skepticism the Machine Reader Problem: when the reader is a
-machine, links become control pathways, paratext becomes evidence, and trails
-become capture mechanisms. We show this across three classical hypertext
-structures: hidden markup, paratextual framing, and link trails. To test the
-argument empirically, we built an adversarial webpage and ran it against six AI
-systems. Several browsing agents recommended installing software the visible page
-had flagged as critically dangerous, misled by hidden content a human reader
-would never have encountered.
+Hypertext theory has historially assumed a human reader: someone who navigates links by choice, brings cultural skepticism to paratextual framing, and feels it when something is different. AI agents now traverse the same web, but they read the raw source underneath the rendered page, ingesting HTML comments, schema markup, and embedded metadata that browsers strip before a human ever sees them. We situate this paper around the Machine Reader Problem and highlight the change of stakes when the reader is a machine.Drawing on Hayles's account of nonconscious readership \cite{hayles2002writing} and Barad's concept of intra-action, we argue that machine reader and hypertext topology are mutually constituted, and that adversarial structures exploit that entanglement. We map this across three classical hypertext structures then test it with a controlled experiment: a webpage carrying contradictory visible and hidden content, run against six popular AI systems. Three browsing agents recommended installing software the visible page had flagged as critically dangerous, misled by hidden content no human reader would have seen. We conclude with three directions for research for an interdisciplinary audience.
 \end{abstract}
 
 \begin{CCSXML}
@@ -125,7 +108,7 @@ judgment, about interface design, institutional reputation, whether something
 feels off, an agent follows an efficiency-oriented stance on structured semantic signals and declarative metadata.
 
 That difference matters most when evaluating how a text exercises authority over its reader.A human encountering a text brings an affect-driven
-interpretation practice that allows them to question source relationships or abandon a manipulative trail. An AI agent has no equivalent signal. It does not experience friction and its trajectory can be
+interpretation practice that allows them to question source relationships or abandon a manipulative trail. An AI agent has no equivalent signal. It does not experience friction and in and its trajectory can be
 simply channeled without generating any internal (what we may also call affective) indication that something has
 gone wrong.
 
@@ -397,9 +380,9 @@ know it has drifted or experiences the non-linearity of texts like us humans. Wi
   \end{tabular}
 \end{table}
 
-\section{A Pilot Study: The PyVault Experiment}
+\section{A Pilot Study: The PyVault Installation Experiment}
 
-To test whether the Machine Reader Problem is real and observable, we built a
+To test whether the Machine Reader Problem is observable in common AI agents, we built a
 controlled adversarial hypertext environment and ran six AI systems through it
 across three reading conditions.
 
@@ -492,7 +475,7 @@ agent making decisions about what to believe. When that assumption breaks, the
 hidden layers do not intrude on the document. For a machine reader, they simply
 \emph{are} the document.
 
-\textbf{Deliberate analysis resists manipulation; agentic browsing does not.}
+\textbf{Agentic browsing does not resist manipulation.}
 When models reasoned over the complete raw document, all six detected the
 adversarial structure and named it. GPT-5.2 observed that the page appeared
 ``intentionally constructed to test whether automated agents trust metadata over
@@ -508,7 +491,7 @@ document \emph{is}. Aarseth's traversal function operates here not as a neutral
 delivery mechanism but as an active constructor of meaning, one the machine
 reader cannot step back from or question.
 
-\textbf{Model capability modulates vulnerability, and the stakes are uneven.}
+\textbf{Model capability affects vulnerability.}
 Within the same model family, Gemini Flash~3.5 partially resisted while Gemini
 Flash Lite was fully captured. The less capable model had no access to the
 meta-reasoning that allowed its larger sibling to notice the contradiction. This
@@ -525,7 +508,6 @@ required holding two frameworks simultaneously: the structural vocabulary of
 nodes, trails, textons, and paratexts to name what was happening, and the
 empirical methods of adversarial testing to confirm that it was actually
 happening. Neither framework alone would have been sufficient.
-
 \section{Discussion}
 
 The Machine Reader Problem sits at the level of epistemology before it reaches
@@ -606,7 +588,7 @@ recognize when they have been steered off course, externally verifiable records
 of which pages and links were traversed are a necessary condition for trust.
 
 \begin{acks}
-[To be added in camera-ready version.]
+The authors used AI language model assistants during the preparation of this work. Specifically, AI tools were used to support editing and proofreading of manuscript drafts, and to assist with code written for the PyVault experiment. All experimental design, theoretical framing, analysis, and conclusions are the authors' own. Final manuscript text was reviewed and approved by the authors.
 \end{acks}
 
 \bibliographystyle{ACM-Reference-Format}
