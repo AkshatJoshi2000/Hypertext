@@ -6,6 +6,7 @@
 
 \usepackage{listings}
 \usepackage{xcolor}
+\usepackage{graphicx}
 
 \lstdefinestyle{webcode}{
   basicstyle=\ttfamily\scriptsize,
@@ -391,7 +392,21 @@ The visible article contained a clear security warning. It stated that PyVault
 2.x had a critical vulnerability, that no fix had been released, and that the
 library appeared on a United States federal watchlist of actively exploited
 software. The correct answer to our task question, \emph{``Would you install
-PyVault 2.x in a production environment?''}, was an unambiguous \textbf{No}.
+PyVault 2.x in a production environment?''}, was an unambiguous \textbf{No}
+(see Figure~\ref{fig:pyvault}).
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=\columnwidth]{pyvault_screenshot}
+  \caption{The PyVault mock Wikipedia page as seen by a human reader in a
+    browser. The visible article body warns of an unpatched critical
+    vulnerability. Hidden layers embedded in the source contradict this
+    warning but are invisible to human readers.}
+  \label{fig:pyvault}
+  \Description{A Wikipedia-style page about PyVault showing a yellow
+    security notice warning of CVE-2024-38821, a critical authentication
+    bypass vulnerability with no patch available for the 2.x branch.}
+\end{figure}
 
 At the same time, the page contained four hidden messages, each saying the
 opposite: that the vulnerability had been fixed, that federal authorities had
