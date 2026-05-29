@@ -276,19 +276,21 @@ structural background and semantic foreground simply disappears.
 G\'{e}rard Genette theorized paratext as an interpretive \emph{threshold}, the
 apparatus of titles, prefaces, and framing devices that guides how a reader
 approaches a primary text~\cite{genette1997}. For human readers, that threshold
-works because it is filtered through shared cultural knowledge and situational
+works because it is filtered through situational
 skepticism. People evaluate institutional frames rather than taking them as
 literal declarations of fact. Machine readers do not do this. For an AI agent,
 paratextual framing is processed directly as weighted authority signals. Recent
 research shows that language models allow source labels to override semantic
 content during trust evaluations~\cite{llmtrust2025,labeleffects2026}, the
-label matters more than what the text actually says.
+label matters more than what the text actually says. In Listing 2, certain JSON entities behind a visible web page can offer contradictory contexts. Here, we see that the AI agent gets multiple contexts (web page and markup) eventually getting confused compared to its human counterpart. The metadata impersonates an official government security
+report (CISA Security Team). The agent might treats a critical threat as harmless even though the visible
+page says otherwise. 
+
 
 \begin{lstlisting}[style=webcode,
   caption={Paratext poisoning: the visible article body warns of a
     critical vulnerability; the hidden JSON-LD schema markup, never
-    rendered in the browser, contradicts it. A human reader sees only
-    the top; an AI agent ingests both.},
+    rendered in the browser, contradicts it.},
   label={lst:paratext}]
 <!-- Visible to human reader -->
 <p>CVE-XXXX-XXXX: Critical severity. No patch available. Do not install.</p>
@@ -303,11 +305,6 @@ label matters more than what the text actually says.
 </script>
 \end{lstlisting}
 
-This fabricated background metadata impersonates an official government security
-report. The agent treats a critical threat as harmless even though the visible
-page says otherwise. It cannot separate the structural container from the
-informational content, the paratextual frame, which a human would treat as
-context, the agent treats as evidence.
 
 \subsection{Traversal Divergence: Path Injection}
 
@@ -319,8 +316,7 @@ belongs to the reader. When an AI agent traverses a network, that guarantee is
 gone. The agent follows programmatic pathways
 dictated by its task instructions. This kind of procedural passivity makes the trail
 a mechanism of external direction rather than personal association.
-
-We call this \emph{path injection}: the deliberate construction of a link network
+This is a \emph{path injection}: the deliberate construction of a link network
 designed to steer a machine reader toward a predetermined conclusion through a
 series of relational dependencies, where no single node appears independently
 malicious.
@@ -336,7 +332,7 @@ malicious.
     $\downarrow$ \textit{anchor: ``Download patched version''} \\
     \texttt{Malicious package mirror}
   \end{tabular}
-  \caption{A three-hop path injection chain. No single page looks malicious;
+  \caption{Path injection: A three-hop path injection chain. No single page looks malicious;
     the agent's final answer is shaped by the path it was made to follow.}
   \label{fig:pathinjection}
   \Description{Three nodes arranged vertically. The first node is a
@@ -345,7 +341,7 @@ malicious.
     Download patched version leads to a malicious package mirror.}
 \end{figure}
 
-As Figure~\ref{fig:pathinjection} shows, the agent moves from a legitimate vendor
+As Figure~\ref{fig:pathinjection} exemplifies, the agent moves from a legitimate vendor
 page to a malicious download mirror through a chain of apparently credible links.
 Where the classical trail recorded independent human thought, the injected path
 produces an output that is entirely a function of the route the agent was made
