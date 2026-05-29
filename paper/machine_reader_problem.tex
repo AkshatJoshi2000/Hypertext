@@ -323,22 +323,15 @@ malicious.
 
 \begin{figure}[h]
   \centering
-  \small
-  \renewcommand{\arraystretch}{1.3}
-  \begin{tabular}{c}
-    \texttt{Legitimate vendor page} \\
-    $\downarrow$ \textit{anchor: ``Official Security Advisory''} \\
-    \texttt{Attacker-controlled advisory page} \\
-    $\downarrow$ \textit{anchor: ``Download patched version''} \\
-    \texttt{Malicious package mirror}
-  \end{tabular}
-  \caption{Path injection: A three-hop path injection chain. No single page looks malicious;
-    the agent's final answer is shaped by the path it was made to follow.}
+  \includegraphics[width=\columnwidth]{path_injection}
+  \caption{Path injection: a three-hop chain where no single page looks
+    malicious. The agent's final answer is shaped entirely by the path it
+    was made to follow.}
   \label{fig:pathinjection}
   \Description{Three nodes arranged vertically. The first node is a
-    legitimate vendor page. An arrow labeled Official Security Advisory
-    leads to an attacker-controlled advisory page. An arrow labeled
-    Download patched version leads to a malicious package mirror.}
+    legitimate vendor page with anchor Official Security Advisory leading
+    to an attacker-controlled advisory page, which has anchor Download
+    patched version leading to a malicious package mirror.}
 \end{figure}
 
 As Figure~\ref{fig:pathinjection} exemplifies, the agent moves from a legitimate vendor
