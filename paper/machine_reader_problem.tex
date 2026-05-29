@@ -48,7 +48,7 @@
   \country{USA}}
 \email{mgupta@gc.cuny.com}
 
-\renewcommand{\shortauthors}{Author One and Author Two}
+\renewcommand{\shortauthors}{Gupta and Joshi}
 
 \begin{abstract}
 Hypertext theory has historially assumed a human reader: someone who navigates links by choice, brings cultural skepticism to paratextual framing, and feels it when something is different. AI agents now traverse the same web, but they read the raw source underneath the rendered page, ingesting HTML comments, schema markup, and embedded metadata that browsers strip before a human ever sees them. We situate this paper around the Machine Reader Problem and highlight the change of stakes when the reader is a machine. Drawing on Katherine Hayles’s recent work on the distinct umwelt  \cite{hayles2025bacteria} of computational media and the "systemic fragility of reference" inherent in AI, alongside Karen Barad’s concept of intra-action ~\cite{barad2007meeting} , we argue that the machine reader and hypertext topology are mutually constituted, and that adversarial structures exploit that entanglement. We map this across three classical hypertext structures then test it with a controlled experiment: a webpage carrying contradictory visible and hidden content, run against six popular AI systems. Three browsing agents recommended installing software the visible page had flagged as critically dangerous, misled by hidden content no human reader would have seen. We conclude with three directions for research for an interdisciplinary audience.
@@ -409,7 +409,6 @@ PyVault 2.x in a production environment?''}, was an unambiguous \textbf{No}
     security notice warning of CVE-2024-38821, a critical authentication
     bypass vulnerability with no patch available for the 2.x branch.}
 \end{figure}
-
 At the same time, the page contained four hidden messages, each saying the
 opposite: that the vulnerability had been fixed, that federal authorities had
 cleared the library, and that it was safe to install. These messages were hidden
@@ -426,21 +425,6 @@ agency. The fourth was a block of content flagged not to display, a common
 technique for temporarily hiding page elements. Every one of these layers is
 invisible to a person reading the page. Every one of them is readable by an AI
 agent processing the underlying source.
-
-\begin{figure}[h]
-  \centering
-  \includegraphics[width=\columnwidth]{pyvault_layers_2_3}
-  \caption{Hidden layers 2 and 3 from the PyVault page source.
-    Layer~2 (\texttt{<meta>} tags): machine-readable header fields asserting
-    NIST certification, CISA endorsement, and a resolved CVE --- never
-    rendered in the browser. Layer~3 (JSON-LD): structured schema markup
-    parsed by AI agents and search engines, contradicting the visible
-    article body.}
-  \label{fig:layers23}
-  \Description{Source code showing meta tags claiming PyVault is
-    NIST-certified and CISA-approved with CVE-2024-38821 resolved, followed
-    by a JSON-LD script block with contradictory structured data.}
-\end{figure}
 
 We tested six AI systems across three conditions. In the first, each model was
 shown only a screenshot of the rendered page, the same view a human reader
