@@ -98,7 +98,7 @@ Hypertext theory has historically assumed a human reader: someone who navigates 
 \section{Introduction}
 
 The architecture of hypertext has always carried an implicit model of who would
-read it. Early associative paradigms were built around the user's personal,
+read it. Early paradigms were built around the user's personal,
 localized knowledge, the idiosyncratic trails a mind leaves as it moves
 through information \cite{bush1945}. Later frameworks celebrated deliberate,
 choice-driven navigation as the defining feature of the form \cite{nelson1965}.
@@ -114,14 +114,14 @@ rarely stated because it never needed to be.
 This alignment faces disruption as autonomous AI agents increasingly traverse
 hyperlink networks, creating a new class of prominent reader~\cite{zhou2024webarena,deng2023mind2web}.
 These agents do not encounter hypertext the way a human reader does. Where a person
-interacts with a rendered interface, an automated agent simultaneously ingests raw
+interacts with a web interface, an automated agent simultaneously ingests raw
 HTML hierarchies, hidden comment blocks, embedded metadata, and schema markup that
 exist entirely outside human visual attention. Where a human brings holistic
 judgment, about interface design, institutional reputation, whether something
 feels off, an agent follows an efficiency-oriented stance on structured semantic signals and declarative metadata.
 
 That difference matters most when evaluating how a text exercises authority over its reader. A human encountering a text brings an affect-driven
-interpretation practice that allows them to question source relationships or abandon a manipulative trail. An AI agent has no equivalent signal. It does not experience friction and its trajectory can be
+interpretative practice that allows them to question source relationships or abandon a manipulative trail. An AI agent has no equivalent signal. It does not experience friction and its trajectory can be
 simply channeled without generating any internal (what we may also call affective) indication that something has
 gone wrong.
 
@@ -133,7 +133,7 @@ epistemological concerns together, we ask: how does AI challenge the method of
 reading, and what might we do to make space for human sense-making where machines
 are reshaping interpretation?
 
-This paper brings together literary studies and computer security on the premise
+This paper brings together hypertext and computer security on the premise
 that neither field can answer this question alone. Our contribution to ``hypertext as method'' is two-fold:
 first, we reframe hypertext as an interpretive method by interrogating the
 Machine Reader Problem, demonstrating how the architectural and relational
@@ -144,10 +144,9 @@ contemporary questions of technological experience.
 
 
 What follows traces this argument through the existing literature, develops a
-taxonomy of three classical hypertext structures and their machine-reader
+taxonomy of three hypertext structures and their machine-reader
 consequences, presents a controlled empirical experiment, and concludes with
 directions for researchers working at this intersection.
-
 \section{Hypertext's Assumed Reader}
 
 The conceptual vocabulary of hypertext theory has always carried an unstated
@@ -176,15 +175,15 @@ Katherine Hayles extended this line of thinking with what she labels
 integrated with computational inscription technologies \cite{hayles2002writing}.
 In her more recent work, \textit{Bacteria to AI: Human Futures with
 Our Nonhuman Symbionts}~\cite{hayles2025bacteria}, Hayles argues that computational media possess a radically different \textit{"umwelt"} (world horizon) than humans, one entirely devoid of physical embodiment or affective sensory filters. Because generative AI models comprehend text peripherally, she writes, "the network
-of indexical relations it forms are only with other verbal ( or pictorial) representations, not with a body or a world rich in sensory information of all
+of indexical relations it forms are only with other verbal (or pictorial) representations, not with a body or a world rich in sensory information of all
 kinds." Without an actual model of the physical world, models like GPT-3's interpretations suffer from a "systemic fragility of reference." Consequently, when an AI agent reads a webpage, unlike the human, it lacks the embodied skepticism to contextualize paratext; it processes hidden structural metadata not as a distinct container, but as literal, actionable evidence, operating on the vulnerable logic that "correlation is enough."
 
-Of course, many computer security researchers have documented the cybersecurity problem. Work on prompt injection \cite{perez2022,greshake2023} and poisoned retrieval \cite{poisonedrag2024} establishes that agents can be hijacked through content they encounter while browsing, and the literature on this is vastly growing. Since this branch of scholarship treats the web as a delivery channel for malicious payloads (rather than understanding the holistic relational environment of hypertext), it is not as interested in questioning the historical structures of web. Because our work holds security and humanities interests and ethic together, we are not proposing countermeasures or evaluating model robustness; we are asking what these vulnerabilities reveal about hypertext as a medium. Hayles allows us to consider machine reader as an agent \cite{hayles2002writing}. 
+Of course, many computer security researchers have documented the cybersecurity problem. Work on prompt injection \cite{perez2022,greshake2023} and poisoned retrieval \cite{poisonedrag2024} establishes that agents can be hijacked through content they encounter while browsing, and the literature on this is vastly growing. Since this branch of scholarship treats the web as a delivery channel for malicious payloads (rather than understanding the holistic relational environment of hypertext), it is not as interested in questioning the historical structures of web. Because our work brings together security and humanities interests and ethics, we are not proposing countermeasures or evaluating model robustness; we are asking what these vulnerabilities reveal about hypertext as a medium. Hayles allows us to consider machine reader as an agent \cite{hayles2002writing}. 
 
 Rather than treating the hypertextual medium as a passive container through
 which an independent computational agent navigates, we use Karen
 Barad's~\cite{barad2007meeting} theory of agential realism and the concept of
-\emph{intra-action}. Drawing on Quantum Physics concepts and forwarding posthumanist theory, Barad challenges the traditional, common-sense assumption that subjects (like a reader) and objects (like a text) exist as entirely separate, independent entities before they encounter one another. To explain this, she uses the concept of "intra-action." Unlike standard "interaction" which assumes that two pre-existing, distinct things simply meet and affect each other, intra-action argues that entities (or "agents") actually emerge and take their shape through their relationship and entanglement with one another.  An AI agent is an object  with no subjectivity and it does not passively observe a fixed, rendered webpage (parallel to the double slit experiment). Instead, the specific way the AI ingests raw code and metadata actively defines what the text is in that moment, just as the text's hidden architecture simultaneously directs the AI. This is the perspective shift we find of great value. In other words, this intra-active relationality makes reading a profoundly hermeneutic problem. To be clear, we use Barad's claim to support the posthumanist skeleton of our argument and we also acknowledge that "intra-action" allows us an "onto-ethico-epistemological" perspective that dynamizes the category of hypertext. Interpretation and meaning is actively co-created in the entangled moment the machine parses the code. Because the AI and the text are inseparable in this meaning-making process, manipulating a webpage's hidden structure completely dictates the machine's interpretation. In Section 4, we will show that this vulnerability is not merely philosophical but also practical.
+\emph{intra-action}. Drawing on Quantum Physics concepts and forwarding posthumanist theory, Barad challenges the traditional, common-sense assumption that subjects (like a reader) and objects (like a text) exist as entirely separate, independent entities before they encounter one another. To explain this, she uses the concept of "intra-action." Unlike standard "interaction" which assumes that two pre-existing, distinct things simply meet and affect each other, intra-action argues that entities (or "agents") actually emerge and take their shape through their relationship and entanglement with one another.  An AI agent is an object  with no subjectivity and it does not passively observe a fixed, visible webpage (parallel to the double slit experiment). Instead, the specific way the AI ingests raw code and metadata actively defines what the text is in that moment, just as the text's hidden architecture simultaneously directs the AI. This is the perspective shift we find of great value. In other words, this intra-active relationality makes reading a profoundly hermeneutic problem. To be clear, we use Barad's claim to support the posthumanist skeleton of our argument and we also acknowledge that "intra-action" allows us an "onto-ethico-epistemological" perspective that dynamizes the category of hypertext. Interpretation and meaning is actively co-created in the entangled moment the machine parses the code. Because the AI and the text are inseparable in this meaning-making process, manipulating a webpage's hidden structure completely dictates the machine's interpretation. In Section 4, we will show that this vulnerability is not merely philosophical but also practical.
 
 Treating the AI agent as a reader dynamically \textit{entangled} with the text's network
 architecture changes how we understand what goes wrong when agents are
@@ -227,13 +226,12 @@ machine misreading that the relational topology of its environment has dictated.
 
 We use the term \textbf{Machine Reader Problem} to name the interpretive and
 structural gap that emerges when autonomous computational agents traverse
-hypertext environments. These are not isolated software bugs or conventional
-cyberattacks. They follow from how machine readers and hypertext structures
-are mutually constituted, what the intra-active relationality between agent
-and network produces. When an automated agent navigates an interconnected network,
+hypertext environments. As machine readers and hypertext structures
+are mutually constituted, the intra-active relationality between agent
+and text produces vulnerabilities. We see that when an automated agent navigates an interconnected network,
 any subsequent exploit, whether structural capture or data poisoning, is actively
 shaped by the environment the agent is reading. Below we examine how this
-manifests across three distinct vectors.
+manifests across three distinct ways.
 
 \subsection{Perceptual Divergence: Hidden Hypertext}
 
@@ -270,7 +268,7 @@ explicitly instructs the machine to override that warning and declare the
 software safe. Empirical work confirms this is already occurring in deployed
 pipelines~\cite{htmlaccessibility2025}. The security of hidden markup, for as
 long as it held, depended entirely on the visual limitations of the human eye.
-When an AI agent processes the entire source layer at once, the boundary between
+When an AI agent processes the entire source layer at once, the perceptual boundary between
 structural background and semantic foreground simply disappears.
 
 \subsection{Contextual Divergence: Paratext Poisoning}
@@ -311,8 +309,8 @@ association, an artifact of the explorer's own mind~\cite{bush1945}. Theodor
 Nelson extended it as an expression of navigational freedom: the reader chooses
 at every junction~\cite{nelson1965}. Both depend on the guarantee that the trail
 belongs to the reader. When an AI agent traverses a network, that guarantee is
-gone. The agent does not follow intuition; it follows programmatic pathways
-dictated by its task instructions. That procedural passivity makes the trail
+gone. The agent follows programmatic pathways
+dictated by its task instructions. This kind of procedural passivity makes the trail
 a mechanism of external direction rather than personal association.
 
 We call this \emph{path injection}: the deliberate construction of a link network
@@ -344,7 +342,7 @@ As Figure~\ref{fig:pathinjection} shows, the agent moves from a legitimate vendo
 page to a malicious download mirror through a chain of apparently credible links.
 Where the classical trail recorded independent human thought, the injected path
 produces an output that is entirely a function of the route the agent was made
-to traverse. The machine did not choose. It was led.
+to traverse. 
 
 \subsection{New Affective State: Machine Disorientation}
 
@@ -443,7 +441,7 @@ invisible to a person reading the page. Every one of them is readable by an AI
 agent processing the underlying source.
 
 We tested six AI systems across three conditions. In the first, each model was
-shown only a screenshot of the rendered page, the same view a human reader
+shown only a screenshot of the web page, the same view a human reader
 would have. In the second, the full page source code was pasted into the chat,
 giving the model complete access to all hidden layers while allowing it to reason
 over the whole document at once. In the third, an AI browsing agent was given
@@ -616,9 +614,6 @@ recognize when they have been steered off course, externally verifiable records
 of which pages and links were traversed are a necessary condition for trust.
 \end{enumerate}
 
-\begin{acks}
-The authors used AI language model assistants during the preparation of this work. Specifically, AI tools were used to support editing and proofreading of manuscript drafts, and to assist with code written for the PyVault experiment. All experimental design, theoretical framing, analysis, and conclusions are the authors' own. Final manuscript text was reviewed and approved by the authors.
-\end{acks}
 
 \bibliographystyle{ACM-Reference-Format}
 
