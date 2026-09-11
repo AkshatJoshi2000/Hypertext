@@ -171,6 +171,14 @@ table.dtable td:last-child { color: var(--fg); }
 .hud kbd { border: 1px solid var(--border); border-radius: 3px; padding: .1em .35em; font-size: .92em; background: var(--panel); }
 .brand { position: fixed; bottom: 2.2vh; left: 2.4vw; font-family: var(--mono); font-size: .74rem; color: var(--fg-faint); z-index: 20; }
 
+/* on-screen prev/next, tap targets for phones and tablets where there's no keyboard */
+.navbtn { position: fixed; bottom: 6.5vh; z-index: 25; width: 46px; height: 46px; border-radius: 50%; border: 1px solid var(--border); background: var(--panel); color: var(--fg); font-size: 1.5rem; line-height: 1; display: flex; align-items: center; justify-content: center; cursor: pointer; -webkit-tap-highlight-color: transparent; }
+.navbtn:active { background: var(--bg-alt); }
+.navbtn.prev { left: 2.4vw; }
+.navbtn.next { right: 2.4vw; }
+.navbtn[disabled] { opacity: .3; pointer-events: none; }
+body.overview .navbtn, body.notes-on .navbtn { display: none; }
+
 /* ---------- speaker notes ---------- */
 aside.notes { display: none; }
 body.notes-on aside.notes { display: block; position: fixed; left: 0; right: 0; bottom: 3px; max-height: 36vh; overflow-y: auto; background: var(--bg-alt); border-top: 2px solid var(--accent); padding: 1.6vh 2.4vw 2.4vh; font-size: .92rem; line-height: 1.6; color: var(--fg-dim); z-index: 15; }
@@ -193,7 +201,7 @@ body.overview .slide::after { content: attr(data-n); position: absolute; top: .6
 @media print {
   html, body { overflow: visible; height: auto; background: #fff; color: #000; }
   .slide { display: flex !important; position: relative; inset: auto; page-break-after: always; height: 100vh; }
-  .hud, .bar, .brand { display: none; }
+  .hud, .bar, .brand, .navbtn { display: none; }
   aside.notes { display: block !important; position: static; border-top: 1px solid #ccc; }
 }
 </style>
@@ -487,6 +495,8 @@ body.overview .slide::after { content: attr(data-n); position: absolute; top: .6
 
 <div class="bar"><i></i></div>
 <div class="brand">The Assumed Reader &middot; HT '26</div>
+<button class="navbtn prev" aria-label="Previous slide">&#8249;</button>
+<button class="navbtn next" aria-label="Next slide">&#8250;</button>
 <div class="hud">
   <span><kbd>&larr;</kbd><kbd>&rarr;</kbd> step</span>
   <span><kbd>S</kbd> notes</span>
@@ -505,6 +515,8 @@ body.overview .slide::after { content: attr(data-n); position: absolute; top: .6
   var slides = [].slice.call(document.querySelectorAll('.slide'));
   var bar = document.querySelector('.bar > i');
   var count = document.getElementById('count');
+  var prevBtn = document.querySelector('.navbtn.prev');
+  var nextBtn = document.querySelector('.navbtn.next');
   var n = slides.length;
   var i = 0;
 
@@ -513,6 +525,8 @@ body.overview .slide::after { content: attr(data-n); position: absolute; top: .6
     slides.forEach(function (s, k) { s.classList.toggle('active', k === i); });
     if (bar) bar.style.width = ((i + 1) / n * 100) + '%';
     if (count) count.textContent = (i + 1) + ' / ' + n;
+    if (prevBtn) prevBtn.disabled = i === 0;
+    if (nextBtn) nextBtn.disabled = i === n - 1;
     if (push !== false) history.replaceState(null, '', '#' + (i + 1));
     // ribbons.js listens for this to start/stop the canvas on the active slide only.
     document.dispatchEvent(new CustomEvent('deck:slide', { detail: { i: i, el: slides[i] } }));
@@ -545,6 +559,9 @@ body.overview .slide::after { content: attr(data-n); position: absolute; top: .6
       if (document.body.classList.contains('overview')) { overview(false); show(k); }
     });
   });
+
+  if (prevBtn) prevBtn.addEventListener('click', function () { if (i > 0) show(i - 1); });
+  if (nextBtn) nextBtn.addEventListener('click', function () { if (i < n - 1) show(i + 1); });
 
   var start = parseInt((location.hash || '').replace('#', ''), 10);
   show(isNaN(start) ? 0 : start - 1);
