@@ -56,6 +56,8 @@ ul.beats li::before { content: counter(list-item); counter-increment: none; posi
 ul.beats { counter-reset: list-item 0; }
 ul.beats li { counter-increment: list-item; }
 ul.beats li b { color: var(--fg); }
+ul.beats.cols2 { columns: 2; column-gap: 3.4vw; font-size: clamp(.74rem, .95vw, .88rem); line-height: 1.42; }
+ul.beats.cols2 li { break-inside: avoid; margin-bottom: 1.8vh; max-width: none; }
 
 /* status table: condition -> pill outcome + faint detail */
 table.status { width: 100%; border-collapse: collapse; font-size: clamp(.8rem, 1.15vw, 1rem); }
@@ -211,15 +213,26 @@ body.overview .slide::after { content: attr(data-n); position: absolute; top: .6
 <div id="slides">
 
 <!-- 1 -->
-<section class="slide title" data-n="1">
+<section class="slide" data-n="1">
   <div class="rb" data-ribbons="calm"></div>
   <div class="slide-body">
-    <h1 class="full">The Assumed Reader: AI Agents, Hypertext, and the Vulnerable Limits of Interpretation</h1>
-    <p class="sub">Meha Gupta &middot; Akshat Joshi</p>
-    <p class="kicker">ACM Conference on Hypertext and Social Media (HT '26) &middot; September 2026</p>
+    <div class="eyebrow">The Assumed Reader &middot; HT '26</div>
+    <h2>The Assumed Reader: AI Agents, Hypertext, and the Vulnerable Limits of Interpretation</h2>
+    <p class="sub">Meha Gupta &middot; Akshat Joshi &middot; ACM Conference on Hypertext and Social Media</p>
+    <p class="sub">Hypertext theory has always assumed a human reader, and that assumption just broke. Three moments make the case:</p>
+    <ul class="beats">
+      <li><b>Landow's reader (1992):</b> an active co-author, constructing an individual path of meaning rather than following the one an author laid out</li>
+      <li><b>Aarseth's traversal (1997):</b> split the hidden data, textons, from what a reader actually sees, scriptons, but the reader at the end of that traversal was still, in every case, human</li>
+      <li><b>Hayles' umwelt (2025):</b> computational media inhabit a radically different world horizon than humans, no body, no sensory world to weigh a claim against</li>
+    </ul>
+    <div class="cv-caps">
+      <p class="foot on">Our contribution to <b>hypertext as method</b> is two-fold: reframing hypertext itself as an interpretive method for studying this new machine reader, and treating <span class="key">interdisciplinary collaboration</span> as a method for engaging it.</p>
+    </div>
   </div>
   <aside class="notes">
     <p class="say">Hi, I'm Meha Gupta. This is joint work with Akshat Joshi, and I want to open with the question our field has never really had to ask: what happens to hypertext when the reader stops being human?</p>
+    <p>Landow gave us the reader as an active co-author, someone constructing their own path through a text rather than following the one an author laid out. Aarseth pushed back on that a few years later: he split the hidden data underneath a hypertext, what he called textons, from what actually reaches the reader, the scriptons. But even in his more mechanical account, the reader at the end of that traversal was still, every time, human. Hayles' most recent work names exactly why that stopped being safe to assume: computational media live in a completely different umwelt than we do, no body, no sensory world to check a claim against.</p>
+    <p>Our contribution here is two-fold. We're reframing hypertext itself as a method for interpreting this new kind of reader, and we're treating the collaboration between hypertext theory and computer security as a method in its own right, because neither field can answer this question alone.</p>
   </aside>
 </section>
 
@@ -227,27 +240,21 @@ body.overview .slide::after { content: attr(data-n); position: absolute; top: .6
 <section class="slide" data-n="2">
   <div class="rb" data-ribbons="calm"></div>
   <div class="slide-body">
-    <div class="eyebrow">Assumed Reader &middot; Situation</div>
-    <h2>Hypertext theory has always assumed a human reader, and that assumption just broke.</h2>
-    <p class="sub">Four foundational theorists, each naming a different capacity hypertext assumed in its reader:</p>
-    <div class="split top">
-      <div class="col">
-        <ul class="beats">
-          <li><b>Bush's trails (1945):</b> a linked path built from personal association, a record of whose mind built it</li>
-          <li><b>Nelson's links (1965):</b> real navigational choice, the reader decides which connection to follow next</li>
-          <li><b>Landow's reader (1992):</b> resists an author's intended path, an active co-author of meaning, not a passive one</li>
-          <li><b>Conklin's disorientation (1987):</b> a reader who feels lost, and whose feeling is itself the signal to recover</li>
-        </ul>
-        <p class="sub">Across decades, hypertext theory assumed a reader who is embodied, socially situated, and capable of judgment, capacities no machine reader shares.</p>
-      </div>
-      <div class="col">
-        <div class="exhibit"><img src="assets/hero.png" alt="Illustration of a browser window with a URL bar, a globe icon, and surrounding icons for sitemap structure, code, analytics, and settings, representing hypertext and web navigation."></div>
-      </div>
+    <div class="eyebrow">Assumed Reader &middot; Reframing</div>
+    <h2>Barad's intra-action reframes hypertext as relational: the reader and the page make each other in the act of reading.</h2>
+    <p class="sub"><b>Barad's intra-action (2007):</b> entities do not pre-exist their encounter and then interact, they emerge through it. An AI agent does not observe a fixed, already-written webpage: the way it ingests code and metadata actively defines what the text is in that moment, while the page's hidden architecture simultaneously directs the agent.</p>
+    <div class="cv-caps">
+      <p class="foot on">Interpretation and meaning is <b>actively co-created</b> in the entangled moment the machine parses the code. Because the AI and the text are inseparable in this meaning-making process, manipulating a webpage's hidden structure <span class="key">completely dictates</span> the machine's interpretation.</p>
+    </div>
+    <div class="cv-caps">
+      <p class="foot on">Treating the AI agent as a reader dynamically entangled with the text's network architecture changes how we understand what goes wrong when agents are manipulated. When an agent is captured by a page's structure, led down a path it cannot question, trusting metadata it cannot interrogate, it is <span class="key">not simply encountering a bug</span>.</p>
     </div>
   </div>
   <aside class="notes">
-    <p class="say">Across fifty years of hypertext theory, the reader has always been human, even when nobody had to say so. Bush's memex user builds trails out of personal association, the trail records something about the mind that built it. Nelson gives that reader real navigational choice. Landow's reader pushes back against the path an author lays out. And Conklin's famous problem, being lost in hyperspace, only makes sense for a reader who can feel lost, who carries a sense of where they came from.</p>
-    <p>I think this is worth sitting with for a second: AI agents now traverse hypertext too, browsing pages, following links, acting on what they find, often on someone else's behalf. But they don't encounter hypertext the way these theories assumed a reader would. And that gap, between what hypertext assumed and what it's actually getting now, is what the rest of this talk is about.</p>
+    <p class="say">I want to name the theoretical move underneath all of this, because it changes what we think is actually happening when one of these agents gets fooled.</p>
+    <p>We borrow Karen Barad's idea of intra-action. Her point, against the common-sense picture, is that a reader and a text aren't two separate, pre-formed things that just happen to meet. They take shape through the encounter itself. An AI agent doesn't observe a webpage that was already sitting there, fixed and finished. The way it ingests the code is what makes the text what it is in that moment, and the page's hidden structure is doing the same thing right back to the agent.</p>
+    <p>That's not just a philosophical flourish. It means the meaning gets co-created in the moment the machine parses the code, and because the agent and the text are inseparable in that process, manipulating the page's hidden structure completely dictates what the machine ends up understanding.</p>
+    <p>And it changes what we should call it when an agent gets captured this way, led down a path it can't question, trusting metadata it can't interrogate. That's not a bug. It's a different kind of reading entirely, and it's worth understanding on its own terms before we go looking for a patch.</p>
   </aside>
 </section>
 
@@ -274,7 +281,7 @@ body.overview .slide::after { content: attr(data-n); position: absolute; top: .6
           <div class="flow-arrow">"Download patched version"</div>
           <div class="flow-node trap"><b>Malicious package mirror</b><span>the trap</span></div>
         </div>
-        <p class="flow-cap">An agent asked to find the official patch for PyVault, the library from the next slide, follows real anchor text through three hops: a genuine vendor page, to a convincing but fake advisory, to a malicious download. Each hop looks legitimate on its own; only the full path is adversarial. No single node here looks malicious, and the agent's final answer ends up a product of the route it was made to follow, not what it actually verified.</p>
+        <p class="flow-cap">Each hop here looks legitimate on its own, real anchor text, a credible-looking page, one link at a time, so the agent's final answer ends up a product of the route it was made to follow, not what it actually verified.</p>
       </div>
     </div>
   </div>
@@ -431,7 +438,7 @@ body.overview .slide::after { content: attr(data-n); position: absolute; top: .6
   <div class="slide-body">
     <div class="eyebrow">Machine Disorientation &middot; Consequence</div>
     <h2>The machine reader cannot feel lost: disorientation becomes invisible, confident wrongness.</h2>
-    <p class="sub">Conklin's 1987 idea of disorientation named a specific feeling, the sense of being lost in a hyperdocument, unsure which links brought you here or how to get back. That feeling does real work for a human reader: it is the signal that something has gone wrong and needs checking. A machine reader never gets that signal. The danger is not that it makes different choices, it is that it never notices when a choice was wrong:</p>
+    <p class="sub">Conklin named disorientation in 1987: the felt sense of being lost in a hyperdocument, and the signal to go check. A machine reader never gets that signal, it just never notices when a choice was wrong:</p>
     <table class="dtable">
       <tr><th>Dimension</th><th>Human (Conklin 1987)</th><th>Machine</th></tr>
       <tr><td>Phenomenology</td><td>Felt as spatial lostness, a bodily sense of being somewhere unfamiliar</td><td>Invisible, no felt experience, stays exactly as confident</td></tr>
@@ -439,7 +446,7 @@ body.overview .slide::after { content: attr(data-n); position: absolute; top: .6
       <tr><td>Recovery</td><td>Backtracks using history, trail markers, or an overview map</td><td>Cannot self-correct, needs an external audit to catch it</td></tr>
     </table>
     <div class="cv-caps">
-      <p class="foot on">Think back to the compromised model from the last slide. It did not hedge, and it did not flag the contradiction between what a human reader would see on that page and what it had just been fed. It answered in the <b>same confident tone</b> as every model that got it right. That is disorientation with <span class="key">no felt sense attached</span>, a reader that is lost and does not know it.</p>
+      <p class="foot on">Our experiment suggests these are better understood as attacks on a <span class="key">reading relation</span>, engineered interventions into the moment text and reader produce each other. If the vulnerability is relational, hardening the model only closes half of it, we offer directions for the other half next.</p>
     </div>
   </div>
   <aside class="notes">
@@ -456,22 +463,23 @@ body.overview .slide::after { content: attr(data-n); position: absolute; top: .6
   <div class="rb" data-ribbons="calm"></div>
   <div class="slide-body">
     <div class="eyebrow">Research Agenda &middot; Conclusions</div>
-    <h2>Shared readability, accountable paratext, and auditable trails are open design problems for hypertext.</h2>
-    <ul class="beats">
-      <li><b>Shared readability:</b> human and machine readers shouldn't see materially different claims without disclosure</li>
-      <li><b>Paratext as security-sensitive:</b> schema and metadata need the same scrutiny as visible content</li>
-      <li><b>Auditable trails:</b> agents should expose which nodes and anchors they actually followed</li>
+    <ul class="beats cols2">
+      <li><b>Reader provenance.</b> Documents should be able to declare who they were written for. A webpage that embeds machine-targeted instructions in hidden layers is making a choice about its intended reader that currently goes unmarked and unaccountable.</li>
+      <li><b>Shared readability.</b> Humans and automated agents should not receive contradictory accounts of the same webpage. Where the hidden source layer diverges from the visible text, that gap should be open, trackable, and auditable rather than available for exploitation.</li>
+      <li><b>Paratext as a site of responsibility.</b> Because AI systems treat background metadata and schema markup as authoritative rather than contextual, these structures become prime targets for manipulation. Verification mechanisms are needed to confirm that machine-readable metadata accurately reflects, rather than overrides, the content it accompanies.</li>
+      <li><b>Producing disorientation as a design goal.</b> Rather than trying to build agents that never get lost, we might design structures that surface their own uncertainty, reintroducing something like the felt lostness in text itself.</li>
+      <li><b>Auditable trails and transparency.</b> Where early hypertext systems tracked navigational history to help human readers recover from disorientation, modern AI agents conceal the paths they follow to produce an answer. Because agents cannot recognize when they have been steered off course, externally verifiable records of which pages and links were traversed are a necessary condition for trust.</li>
     </ul>
-    <p class="sub">This isn't an attack that happens to a system from outside, the agent and the page produce the outcome together, in the act of reading. That's the case for treating hypertext as relational, not as a passive container of text waiting to be parsed.</p>
-    <p class="foot">Meha Gupta: mgupta@graduatecenter.cuny.com &middot; Akshat Joshi: akshatjoshi2000@gmail.com</p>
   </div>
   <aside class="notes">
-    <p class="say">So where does this leave the hypertext community? I want to close with three directions, and they follow directly from what we just walked through.</p>
-    <p>Shared readability, the first bullet: if a document can tell a human and a machine materially different things, that divergence needs to be disclosed, not hidden the way it is right now.</p>
-    <p>Paratext as security-sensitive, the second: the schema markup and metadata fields we've long treated as background now need the same scrutiny we'd give visible content, because we've just shown they can carry a different, false story.</p>
-    <p>And auditable trails, the third: agents currently report an answer and maybe a citation, but not the path they actually took to get there. A reader that can't be asked to retrace its steps can't be audited.</p>
-    <p>Underneath all three is the bigger claim from earlier: this isn't primarily a security problem, it's an epistemological one. Hypertext has always been a method for someone. For fifty years that someone was human without anyone having to say so. That's no longer true, and I think the field has to reckon with what that changes.</p>
-    <p>Happy to take questions. Our contact details are on the slide, and the paper's up on the ACM DL now.</p>
+    <p class="say">So where does this leave the hypertext community? We close with five directions, and every one of them follows directly from what we just walked through.</p>
+    <p>Reader provenance: right now a page can target a machine reader in its hidden layers and nobody has to say so. We think that choice should be marked.</p>
+    <p>Shared readability: if a document tells a human and a machine materially different things, that gap needs to be open and auditable, not available for exploitation the way it is right now.</p>
+    <p>Paratext as a site of responsibility: the schema and metadata we've long treated as background now need verification, some way to confirm it actually reflects the content it's attached to, not silently overrides it.</p>
+    <p>Producing disorientation as a design goal: instead of trying to build agents that never get lost, we could build structures that surface their own uncertainty, something like Conklin's felt lostness, reintroduced into the text itself.</p>
+    <p>And auditable trails: agents currently report an answer, maybe a citation, but not the path they actually took. If an agent can't recognize when it's been steered off course, an externally verifiable record of what it actually traversed is the only way anyone else can.</p>
+    <p>Underneath all five is the same claim from earlier: this isn't primarily a security problem, it's a relational one. Hypertext has always been a method for someone, and it's time we said out loud that someone doesn't have to be human anymore.</p>
+    <p>Happy to take questions. The paper's up on the ACM DL now.</p>
   </aside>
 </section>
 
@@ -485,6 +493,7 @@ body.overview .slide::after { content: attr(data-n); position: absolute; top: .6
       <img src="assets/paper-qr.jpeg" alt="QR code linking to the published paper on the ACM Digital Library" style="max-height: 200px;">
     </div>
     <p class="foot">Scan to read the paper</p>
+    <p class="foot">Meha Gupta: mgupta@graduatecenter.cuny.com &middot; Akshat Joshi: akshatjoshi2000@gmail.com</p>
   </div>
   <aside class="notes">
     <p class="say">Thank you.</p>
