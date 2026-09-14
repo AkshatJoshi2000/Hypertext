@@ -49,6 +49,10 @@ h1.full { max-width: none; font-size: clamp(2.6rem, 5.6vw, 5.2rem); }
 h2 { font-size: clamp(1.5rem, 2.9vw, 2.4rem); line-height: 1.16; margin: 0 0 3vh; font-weight: 680; letter-spacing: -.015em; max-width: 32ch; color: var(--fg); }
 .sub { font-size: clamp(1rem, 1.6vw, 1.35rem); color: var(--fg-dim); max-width: 46ch; line-height: 1.5; margin: 0 0 2.6vh; }
 .kicker { margin-top: 3vh; font-size: clamp(.85rem, 1.15vw, 1rem); color: var(--fg-faint); max-width: 60ch; line-height: 1.6; }
+.authors { display: flex; flex-wrap: wrap; gap: 2.6vw; margin: 0 0 .8vh; }
+.authors .name { font-size: clamp(1.15rem, 1.9vw, 1.55rem); font-weight: 650; color: var(--fg); }
+.authors .aff { font-size: .82rem; color: var(--fg-dim); margin-top: .35vh; max-width: 32ch; line-height: 1.42; }
+.authors .mail { font-size: .78rem; color: var(--fg-faint); margin-top: .25vh; font-family: var(--mono); }
 
 ul.beats { list-style: none; margin: 0; padding: 0; font-size: clamp(1rem, 1.6vw, 1.32rem); line-height: 1.45; }
 ul.beats li { margin: 0 0 2.2vh; padding-left: 2.4rem; position: relative; max-width: 48ch; }
@@ -56,8 +60,8 @@ ul.beats li::before { content: counter(list-item); counter-increment: none; posi
 ul.beats { counter-reset: list-item 0; }
 ul.beats li { counter-increment: list-item; }
 ul.beats li b { color: var(--fg); }
-ul.beats.cols2 { columns: 2; column-gap: 3.4vw; font-size: clamp(.74rem, .95vw, .88rem); line-height: 1.42; }
-ul.beats.cols2 li { break-inside: avoid; margin-bottom: 1.8vh; max-width: none; }
+ul.beats.cols2 { columns: 2; column-gap: 3.4vw; font-size: clamp(1rem, 1.35vw, 1.2rem); line-height: 1.45; }
+ul.beats.cols2 li { break-inside: avoid; margin-bottom: 2.4vh; max-width: none; }
 
 /* status table: condition -> pill outcome + faint detail */
 table.status { width: 100%; border-collapse: collapse; font-size: clamp(.8rem, 1.15vw, 1rem); }
@@ -217,13 +221,22 @@ body.overview .slide::after { content: attr(data-n); position: absolute; top: .6
   <div class="rb" data-ribbons="calm"></div>
   <div class="slide-body">
     <h1 class="full">The Assumed Reader: AI Agents, Hypertext, and the Vulnerable Limits of Interpretation</h1>
-    <p class="sub">Meha Gupta 
-       Department of English, The Graduate Center, City University of New York (CUNY), New York, New York, USA 
-       meha.gupta24@gc.cuny.edu
-       Akshat Joshi
-       Amazon, Seattle, Washington, USA 
-       akshatjoshi2000@gmail.com</p>
+    <div class="authors">
+      <div class="author">
+        <div class="name">Meha Gupta</div>
+        <div class="aff">Department of English, The Graduate Center, City University of New York (CUNY), New York, New York, USA</div>
+        <div class="mail">meha.gupta24@gc.cuny.edu</div>
+      </div>
+      <div class="author">
+        <div class="name">Akshat Joshi</div>
+        <div class="aff">Amazon, Seattle, Washington, USA</div>
+        <div class="mail">akshatjoshi2000@gmail.com</div>
+      </div>
+    </div>
     <p class="kicker">ACM Conference on Hypertext and Social Media (HT '26) &middot; September 2026</p>
+    <div class="exhibit" style="margin-top: 3vh; max-width: 180px;">
+      <img src="assets/paper-qr.jpeg" alt="QR code linking to the published paper on the ACM Digital Library" style="max-height: 150px;">
+    </div>
   </div>
   <aside class="notes">
     <p class="say">Hi, I'm Meha Gupta. This is joint work with Akshat Joshi, and I want to open with the question our field has never really had to ask: what happens to hypertext when the reader stops being human?</p>
@@ -235,7 +248,7 @@ body.overview .slide::after { content: attr(data-n); position: absolute; top: .6
   <div class="rb" data-ribbons="calm"></div>
   <div class="slide-body">
     <div class="eyebrow">Assumed Reader &middot; Situation</div>
-    <h2>Research Context</h2>
+    <h2>Research Context.</h2>
     <ul class="beats">
       <li><b>Landow's reader (1992):</b> an active co-author, constructing an individual path of meaning rather than following the one an author laid out</li>
       <li><b>Aarseth's traversal (1997):</b> split the hidden data, textons, from what a reader actually sees, scriptons</li>
@@ -451,7 +464,7 @@ body.overview .slide::after { content: attr(data-n); position: absolute; top: .6
   <div class="rb" data-ribbons="calm"></div>
   <div class="slide-body">
     <div class="eyebrow">Machine Disorientation &middot; Consequence</div>
-    <h2>The disorientation affect</h2>
+    <h2>The disorientation affect.</h2>
     <p class="sub">Conklin named disorientation in 1987: the felt sense of being lost in a hyperdocument, and the signal to go check. A machine reader never gets that signal, it just never notices when a choice was wrong:</p>
     <table class="dtable">
       <tr><th>Dimension</th><th>Human (Conklin 1987)</th><th>Machine</th></tr>
@@ -475,11 +488,11 @@ body.overview .slide::after { content: attr(data-n); position: absolute; top: .6
   <div class="slide-body">
     <div class="eyebrow">A few research directions</div>
     <ul class="beats cols2">
-      <li><b>Reader provenance.</b> Documents should be able to declare who they were written for. A webpage that embeds machine-targeted instructions in hidden layers is making a choice about its intended reader that currently goes unmarked and unaccountable.</li>
-      <li><b>Shared readability.</b> Humans and automated agents should not receive contradictory accounts of the same webpage. Where the hidden source layer diverges from the visible text, that gap should be open, trackable, and auditable rather than available for exploitation.</li>
-      <li><b>Paratext as a site of responsibility.</b> Because AI systems treat background metadata and schema markup as authoritative rather than contextual, these structures become prime targets for manipulation. Verification mechanisms are needed to confirm that machine-readable metadata accurately reflects, rather than overrides, the content it accompanies.</li>
-      <li><b>Producing disorientation as a design goal.</b> Rather than trying to build agents that never get lost, we might design structures that surface their own uncertainty, reintroducing something like the felt lostness in text itself.</li>
-      <li><b>Auditable trails and transparency.</b> Where early hypertext systems tracked navigational history to help human readers recover from disorientation, modern AI agents conceal the paths they follow to produce an answer. Because agents cannot recognize when they have been steered off course, externally verifiable records of which pages and links were traversed are a necessary condition for trust.</li>
+      <li><b>Reader provenance.</b> Documents should be able to declare who they were written for, a hidden-layer choice that currently goes unmarked.</li>
+      <li><b>Shared readability.</b> Humans and agents should not receive contradictory accounts of the same page, any gap should be open and auditable.</li>
+      <li><b>Paratext as a site of responsibility.</b> AI treats metadata as authoritative, not contextual, so it needs verification against the content it accompanies.</li>
+      <li><b>Producing disorientation as a design goal.</b> Instead of agents that never get lost, design structures that surface their own uncertainty.</li>
+      <li><b>Auditable trails and transparency.</b> Agents conceal the paths they take, externally verifiable records of what they traversed are a condition for trust.</li>
     </ul>
   </div>
   <aside class="notes">
@@ -504,7 +517,7 @@ body.overview .slide::after { content: attr(data-n); position: absolute; top: .6
       <img src="assets/paper-qr.jpeg" alt="QR code linking to the published paper on the ACM Digital Library" style="max-height: 200px;">
     </div>
     <p class="foot">Scan to read the paper</p>
-    <p class="foot">Meha Gupta: mgupta@graduatecenter.cuny.com &middot; Akshat Joshi: akshatjoshi2000@gmail.com</p>
+    <p class="foot">Meha Gupta: meha.gupta24@gc.cuny.edu &middot; Akshat Joshi: akshatjoshi2000@gmail.com</p>
   </div>
   <aside class="notes">
     <p class="say">Thank you.</p>
