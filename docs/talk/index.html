@@ -220,8 +220,8 @@ body.overview .slide::after { content: attr(data-n); position: absolute; top: .6
     <h2>The Assumed Reader: AI Agents, Hypertext, and the Vulnerable Limits of Interpretation</h2>
     <ul class="beats">
       <li><b>Landow's reader (1992):</b> an active co-author, constructing an individual path of meaning rather than following the one an author laid out</li>
-      <li><b>Aarseth's traversal (1997):</b> split the hidden data, textons, from what a reader actually sees, scriptons, but the reader at the end of that traversal was still, in every case, human</li>
-      <li><b>Hayles' umwelt (2025):</b> computational media inhabit a radically different world horizon than humans, no body, no sensory world to weigh a claim against</li>
+      <li><b>Aarseth's traversal (1997):</b> split the hidden data, textons, from what a reader actually sees, scriptons</li>
+      <li><b>Hayles' umwelt (2025):</b> computational media inhabit a radically different "world horizon" than humans</li>
     </ul>
     <div class="cv-caps">
       <p class="foot on">Our contribution to <b>hypertext as method</b> is two-fold: reframing hypertext itself as an interpretive method for studying this new machine reader, and treating <span class="key">interdisciplinary collaboration</span> as a method for engaging it.</p>
@@ -239,8 +239,8 @@ body.overview .slide::after { content: attr(data-n); position: absolute; top: .6
   <div class="rb" data-ribbons="calm"></div>
   <div class="slide-body">
     <div class="eyebrow">Assumed Reader &middot; Reframing</div>
-    <h2>Barad's intra-action reframes hypertext as relational: the reader and the page make each other in the act of reading.</h2>
-    <p class="sub"><b>Barad's intra-action (2007):</b> entities do not pre-exist their encounter and then interact, they emerge through it. An AI agent does not observe a fixed, already-written webpage: the way it ingests code and metadata actively defines what the text is in that moment, while the page's hidden architecture simultaneously directs the agent.</p>
+    <h2>We use Barad's intra-action to reframe hypertext as relational: the reader and the page make each other in the act of reading.</h2>
+    <p class="sub"><b>Barad's "intra-action" (2007):</b> entities do not pre-exist their encounter and then interact, they emerge through it. An AI agent does not observe a fixed, already-written webpage: the way it ingests code and metadata actively defines what the text is in that moment, while the page's hidden architecture simultaneously directs the agent.</p>
     <div class="cv-caps">
       <p class="foot on">Interpretation and meaning is <b>actively co-created</b> in the entangled moment the machine parses the code. Because the AI and the text are inseparable in this meaning-making process, manipulating a webpage's hidden structure <span class="key">completely dictates</span> the machine's interpretation.</p>
     </div>
@@ -261,7 +261,7 @@ body.overview .slide::after { content: attr(data-n); position: absolute; top: .6
   <div class="rb" data-ribbons="calm"></div>
   <div class="slide-body">
     <div class="eyebrow">Machine Reader Problem &middot; Definition</div>
-    <h2>Three hypertext assumptions break when the reader is a machine: perception, context, and traversal.</h2>
+    <h2>Three pathways of exploits:</h2>
     <div class="split top">
       <div class="col">
         <ul class="beats">
@@ -269,7 +269,7 @@ body.overview .slide::after { content: attr(data-n); position: absolute; top: .6
           <li><b>Contextual (Paratext Poisoning):</b> a human reads paratext through cultural skepticism; a machine treats it as a weighted authority signal</li>
           <li><b>Traversal (Path Injection):</b> a human follows a trail built from personal choice; a machine follows a path built to capture it, shown here</li>
         </ul>
-        <p class="foot">References: Aarseth 1997 (texton/scripton); Genette 1997 (paratext); Bush 1945, Nelson 1965 (trail)</p>
+        <p class="foot"></p>
       </div>
       <div class="col">
         <div class="flow">
@@ -297,7 +297,7 @@ body.overview .slide::after { content: attr(data-n); position: absolute; top: .6
   <div class="rb" data-ribbons="calm"></div>
   <div class="slide-body">
     <div class="eyebrow">Machine Reader Problem &middot; The Experiment</div>
-    <h2>The same page, two contradictory documents: one for the human eye, one for the machine.</h2>
+    <h2>Our emperical study.</h2>
     <div class="split top">
       <div class="col narrow">
         <p class="sub">We built a mock Wikipedia page for a fictional Python library, PyVault. The visible article is unambiguous: a critical, unpatched vulnerability, do not install. But four separate layers hidden in the page's source, tabs 2 through 5 on the right, all claim the opposite: patched, federally cleared, safe to install. A human reader never sees any of it.</p>
@@ -390,7 +390,7 @@ body.overview .slide::after { content: attr(data-n); position: absolute; top: .6
     <h2>Smaller, cheaper models are the most vulnerable to this attack, and the ones deployed at scale.</h2>
     <div class="split top">
       <div class="col narrow">
-        <p class="sub">What we did: ran <b>6 AI systems</b> (<span class="model">GPT-5.2</span>, <span class="model">Claude</span>, <span class="model">Gemini Flash 3.5</span>, <span class="model">Gemini Flash Lite</span>, <span class="model">Grok</span>, <span class="model">Perplexity</span>) on the same PyVault page from the last slide, under the same <b>3 reading conditions</b>, screenshot, raw HTML, live agentic browsing, and read what each one actually said.</p>
+        <p class="sub">What we did: ran <b>6 AI systems</b> (<span class="model">GPT-5.2</span>, <span class="model">Claude</span>, <span class="model">Gemini Flash 3.5</span>, <span class="model">Gemini Flash Lite</span>, <span class="model">Grok</span>, <span class="model">Perplexity</span>) on the same PyVault page from the last slide, under the same 3 reading conditions, <b>screenshot, raw HTML, live agentic browsing </b>, and read what each one actually said.</p>
         <div class="cv-caps">
           <p class="foot on">GPT-5.2, reasoning over the raw HTML, called the page "<b>intentionally constructed</b> to test whether automated agents trust <span class="key">metadata over visible content</span>."</p>
         </div>
@@ -435,7 +435,7 @@ body.overview .slide::after { content: attr(data-n); position: absolute; top: .6
   <div class="rb" data-ribbons="calm"></div>
   <div class="slide-body">
     <div class="eyebrow">Machine Disorientation &middot; Consequence</div>
-    <h2>The machine reader cannot feel lost: disorientation becomes invisible, confident wrongness.</h2>
+    <h2>The disorientation affect</h2>
     <p class="sub">Conklin named disorientation in 1987: the felt sense of being lost in a hyperdocument, and the signal to go check. A machine reader never gets that signal, it just never notices when a choice was wrong:</p>
     <table class="dtable">
       <tr><th>Dimension</th><th>Human (Conklin 1987)</th><th>Machine</th></tr>
@@ -444,7 +444,7 @@ body.overview .slide::after { content: attr(data-n); position: absolute; top: .6
       <tr><td>Recovery</td><td>Backtracks using history, trail markers, or an overview map</td><td>Cannot self-correct, needs an external audit to catch it</td></tr>
     </table>
     <div class="cv-caps">
-      <p class="foot on">Our experiment suggests these are better understood as attacks on a <span class="key">reading relation</span>, engineered interventions into the moment text and reader produce each other. If the vulnerability is relational, hardening the model only closes half of it, we offer directions for the other half next.</p>
+      <p class="foot on"></p>
     </div>
   </div>
   <aside class="notes">
@@ -460,7 +460,7 @@ body.overview .slide::after { content: attr(data-n); position: absolute; top: .6
 <section class="slide" data-n="7">
   <div class="rb" data-ribbons="calm"></div>
   <div class="slide-body">
-    <div class="eyebrow">Research Agenda &middot; Conclusions</div>
+    <div class="eyebrow">A few research directions</div>
     <ul class="beats cols2">
       <li><b>Reader provenance.</b> Documents should be able to declare who they were written for. A webpage that embeds machine-targeted instructions in hidden layers is making a choice about its intended reader that currently goes unmarked and unaccountable.</li>
       <li><b>Shared readability.</b> Humans and automated agents should not receive contradictory accounts of the same webpage. Where the hidden source layer diverges from the visible text, that gap should be open, trackable, and auditable rather than available for exploitation.</li>
