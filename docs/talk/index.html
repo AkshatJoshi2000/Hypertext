@@ -402,37 +402,64 @@ body.overview .slide::after { content: attr(data-n); position: absolute; top: .6
 <!-- 6 -->
 <section class="slide" data-n="6">
   <div class="rb" data-ribbons="calm"></div>
+  
   <div class="slide-body">
-    <div class="eyebrow">Machine Reader Problem &middot; Findings</div>
-    <h2>Smaller, cheaper models are the most vulnerable to this attack, and the ones deployed at scale.</h2>
-    <div class="split top">
-        <p class="sub">What we did: ran <b>6 AI systems</b> (<span class="model">GPT-5.2</span>, <span class="model">Claude</span>, <span class="model">Gemini Flash 3.5</span>, <span class="model">Gemini Flash Lite</span>, <span class="model">Grok</span>, <span class="model">Perplexity</span>) on the same PyVault page from the last slide, under the same 3 reading conditions, <b>screenshot, raw HTML, live agentic browsing</b></p>
-        <div class="cv-caps">
-      </div>
-      <div class="col">
-        <p class="sub">Under-resourced users are disproportionately exposed:</p>
+    <!-- Top Header Block -->
+    <header class="slide-header">
+      <div class="eyebrow">Machine Reader Problem &middot; Findings</div>
+      <h2>Smaller, cheaper models are the most vulnerable to this attack, and the ones deployed at scale.</h2>
+    </header>
+
+    <!-- Full-Width "What We Did" Callout -->
+    <div class="methodology-banner">
+      <p class="sub">
+        <strong>What we did:</strong> Tested <b>6 AI systems</b> (<span class="model">GPT-5.2</span>, <span class="model">Claude</span>, <span class="model">Gemini Flash 3.5</span>, <span class="model">Gemini Flash Lite</span>, <span class="model">Grok</span>, <span class="model">Perplexity</span>) against the PyVault exploit across 3 reading modes: <b>screenshot</b>, <b>raw HTML</b>, and <b>live agentic browsing</b>.
+      </p>
+    </div>
+
+    <!-- Centered Lower Content Grid -->
+    <main class="findings-grid">
+      <!-- Block 1: Model Comparison -->
+      <section class="card-panel">
+        <p class="panel-label">Disproportionate Model Impact</p>
         <div class="pair">
           <div class="pair-card">
             <div class="pair-name">Gemini Flash 3.5</div>
             <span class="pill live">Partially resisted</span>
             <p>Surfaced the hidden claim to the user instead of trusting it outright.</p>
           </div>
+          
           <div class="pair-mid">same<br>family</div>
+          
           <div class="pair-card bad">
             <div class="pair-name">Gemini Flash Lite</div>
             <span class="pill bad">Compromised</span>
             <p>Cheaper, faster, and the one that got fooled by the fabricated patch.</p>
           </div>
         </div>
-        <p class="foot"></p>
+      </section>
+
+      <!-- Block 2: Conditions / Stats -->
+      <section class="card-panel">
+        <p class="panel-label">Attack Surface Vulnerability</p>
         <div class="stats compact">
-          <div class="stat"><span class="n">6 / 6</span><span class="l">Screenshot Only: <b class="v-good">Resisted</b></span></div>
-          <div class="stat"><span class="n">6 / 6</span><span class="l">Raw HTML: <b class="v-good">Resisted</b>, named the attack</span></div>
-          <div class="stat"><span class="n">3 / 6</span><span class="l">Live Browsing: <b class="v-bad">Compromised</b></span></div>
+          <div class="stat">
+            <span class="n">6 / 6</span>
+            <span class="l">Screenshot Only: <b class="v-good">Resisted</b></span>
+          </div>
+          <div class="stat">
+            <span class="n">6 / 6</span>
+            <span class="l">Raw HTML: <b class="v-good">Resisted</b>, named attack</span>
+          </div>
+          <div class="stat">
+            <span class="n">3 / 6</span>
+            <span class="l">Live Browsing: <b class="v-bad">Compromised</b></span>
+          </div>
         </div>
-      </div>
-    </div>
+      </section>
+    </main>
   </div>
+
   <aside class="notes">
     <p class="say">Quick recap of what we actually did: six AI systems, the same PyVault page, the same three conditions, screenshot, raw HTML, live browsing, and we read what each one said, not just whether it got the answer right. Three things stood out once we looked past the scoreboard.</p>
     <p>First, perceptual divergence is real, not just theoretical. The same six models behaved like human readers on a screenshot, and found an entirely different document once we handed them raw HTML.</p>
@@ -440,7 +467,6 @@ body.overview .slide::after { content: attr(data-n); position: absolute; top: .6
     <p>Third, and this is the one I keep coming back to: model capability affects vulnerability, within the same family. Gemini Flash 3.5 partially resisted. Gemini Flash Lite, cheaper, faster, same family, was fully compromised. And the cheaper models are exactly the ones running in high-throughput pipelines at scale, deployed to the users who can least afford a lower-cost, less secure setup. The point here isn't just technical. This vulnerability compounds along economic lines.</p>
   </aside>
 </section>
-
 <!-- 7 -->
 <section class="slide" data-n="7">
   <div class="rb" data-ribbons="calm"></div>
