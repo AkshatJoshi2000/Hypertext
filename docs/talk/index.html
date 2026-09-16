@@ -89,7 +89,6 @@ table.dtable td:last-child { color: var(--fg); }
 .stat { flex: 1; text-align: left; border-left: 2px solid var(--accent); padding-left: .9vw; }
 .stat .n { display: block; font-family: var(--mono); font-size: clamp(1.1rem, 1.8vw, 1.5rem); font-weight: 700; color: var(--fg); }
 .stat .l { display: block; font-size: .74rem; color: var(--fg-faint); margin-top: .3vh; }
-/* smaller, supporting variant: used as a reference row under the main content, not the headline */
 .stats.compact { gap: 1.6vw; margin-top: 2.6vh; padding-top: 2vh; border-top: 1px solid var(--border); }
 .stats.compact .stat { border-left-color: var(--border); padding-left: .7vw; }
 .stats.compact .stat .n { font-size: clamp(.9rem, 1.3vw, 1.1rem); color: var(--fg-dim); }
@@ -111,8 +110,7 @@ table.dtable td:last-child { color: var(--fg); }
 .pair-card p { margin: .9vh 0 0; font-size: .84rem; color: var(--fg-dim); line-height: 1.45; }
 .pair-mid { flex: 0 0 auto; align-self: center; font-family: var(--mono); font-size: .66rem; letter-spacing: .08em; text-transform: uppercase; color: var(--fg-faint); text-align: center; width: 5em; }
 
-/* path-injection flow diagram: a vertical chain of nodes, no single one flagged as malicious
-   until the last, matching the paper's Figure 1. */
+/* path-injection flow diagram */
 .flow { background: var(--panel); border: 1px solid var(--border); border-radius: 12px; padding: 2vh 1.4vw; }
 .flow-node { border: 1px solid var(--border); border-radius: 8px; padding: 1.1vh 1vw; background: var(--bg-alt); }
 .flow-node b { display: block; font-size: .98rem; color: var(--fg); }
@@ -125,14 +123,12 @@ table.dtable td:last-child { color: var(--fg); }
 .exhibit { background: var(--panel); border: 1px solid var(--border); border-radius: 12px; padding: 1vh 1vw; display: flex; justify-content: center; }
 .exhibit img { display: block; width: auto; max-width: 100%; height: auto; max-height: 38vh; object-fit: contain; border-radius: 6px; }
 
-/* tabbed source/render window, adapted from deck-boilerplate.html's .cv code-viewer component */
+/* tabbed source/render window */
 .cv { border: 1px solid var(--border); border-radius: 10px; overflow: hidden; background: #0b0f16; }
 .cv-tabs { display: flex; flex-wrap: wrap; border-bottom: 1px solid var(--border); background: var(--bg-alt); }
 .cv-tab { padding: 1vh 1.1vw; font-family: var(--mono); font-size: .68rem; letter-spacing: .02em; white-space: nowrap; cursor: pointer; background: none; border: 0; border-right: 1px solid var(--border); color: var(--fg-faint); }
 .cv-tab:hover { color: var(--fg-dim); background: rgba(79,163,247,.08); }
 .cv-tab.on { background: #0b0f16; color: var(--fg); box-shadow: inset 0 -2px 0 var(--accent); }
-/* Fixed height so switching tabs never resizes the box; content that's shorter than the
-   longest tab just leaves blank space below it rather than the window jumping. */
 .cv-body { padding: 1.6vh 1.2vw; display: none; height: 40vh; overflow-y: auto; }
 .cv-body.on { display: block; }
 .cv-body.img-pane.on { display: flex; align-items: center; justify-content: center; }
@@ -144,31 +140,24 @@ table.dtable td:last-child { color: var(--fg); }
 .cv-row.hit code { color: var(--fg); }
 .cv-row.hit .cv-n { color: var(--amber); opacity: 1; }
 
-/* syntax-highlight tokens, standard editor palette */
-.tc { color: #7ec699; font-style: normal; } /* comments */
-.tt { color: #6cb6ff; } /* tag names */
-.ta { color: #9cdcfe; } /* attribute / JSON key names */
-.ts { color: #dba876; } /* string values */
-.tp { color: var(--fg-faint); } /* punctuation */
+/* syntax-highlight tokens */
+.tc { color: #7ec699; font-style: normal; }
+.tt { color: #6cb6ff; }
+.ta { color: #9cdcfe; }
+.ts { color: #dba876; }
+.tp { color: var(--fg-faint); }
 .model { color: var(--purple); text-decoration: underline; text-decoration-color: rgba(180,140,232,.5); text-underline-offset: 2px; }
 .cv-row.hit .tc, .cv-row.hit .tt, .cv-row.hit .ta, .cv-row.hit .ts, .cv-row.hit .tp { color: var(--fg); }
-/* an explicit gap marker for lines intentionally skipped, so contiguity is never faked */
 .cv-row.skip { justify-content: center; }
 .cv-row.skip .cv-n { visibility: hidden; }
 .cv-row.skip code { color: var(--fg-faint); text-align: center; font-style: italic; }
 
-/* per-tab caption underneath the window, swapped in sync with the active tab */
+/* per-tab captions */
 .cv-caps { margin-top: 1.6vh; border-left: 2px solid var(--accent); padding-left: 1vw; }
 .cv-caps .foot { display: none; font-size: .95rem; color: var(--fg-dim); line-height: 1.55; }
 .cv-caps .foot.on { display: block; }
 .cv-caps .foot b { color: var(--fg); font-weight: 650; }
 .cv-caps .foot .key { color: var(--amber); font-weight: 650; }
-
-/* code panel (hidden-layer source, on the experiment slide) */
-.codepanel { background: #0b0f16; border: 1px solid var(--border); border-radius: 12px; padding: 1.4vh 1.2vw; }
-.code-tab { font-family: var(--mono); font-size: .68rem; letter-spacing: .08em; text-transform: uppercase; color: var(--accent); margin-bottom: .6vh; }
-.code-block { margin: 0 0 1vh; font-family: var(--mono); font-size: clamp(.68rem, .95vw, .85rem); line-height: 1.55; color: var(--fg-dim); white-space: pre-wrap; overflow-wrap: anywhere; }
-.code-block .hl { color: var(--amber); background: rgba(224,179,65,.12); border-radius: 3px; padding: 0 .15em; }
 
 /* ---------- chrome ---------- */
 .bar { position: fixed; left: 0; right: 0; bottom: 0; height: 3px; background: var(--border); z-index: 20; }
@@ -177,7 +166,7 @@ table.dtable td:last-child { color: var(--fg); }
 .hud kbd { border: 1px solid var(--border); border-radius: 3px; padding: .1em .35em; font-size: .92em; background: var(--panel); }
 .brand { position: fixed; bottom: 2.2vh; left: 2.4vw; font-family: var(--mono); font-size: .74rem; color: var(--fg-faint); z-index: 20; }
 
-/* on-screen prev/next, tap targets for phones and tablets where there's no keyboard */
+/* on-screen prev/next buttons */
 .navbtn { position: fixed; bottom: 6.5vh; z-index: 25; width: 46px; height: 46px; border-radius: 50%; border: 1px solid var(--border); background: var(--panel); color: var(--fg); font-size: 1.5rem; line-height: 1; display: flex; align-items: center; justify-content: center; cursor: pointer; -webkit-tap-highlight-color: transparent; }
 .navbtn:active { background: var(--bg-alt); }
 .navbtn.prev { left: 2.4vw; }
@@ -326,7 +315,7 @@ body.overview .slide::after { content: attr(data-n); position: absolute; top: .6
   <div class="rb" data-ribbons="calm"></div>
   <div class="slide-body">
     <div class="eyebrow">Machine Reader Problem &middot; The Experiment</div>
-    <h2>Our emperical study.</h2>
+    <h2>Our empirical study.</h2>
     <div class="split top">
       <div class="col narrow">
         <p class="sub">We built a mock Wikipedia page for a fictional Python library, PyVault. The visible article is unambiguous: a critical, unpatched vulnerability, do not install. But four separate layers hidden in the page's source, tabs 2 through 5 on the right, all claim the opposite: patched, federally cleared, safe to install. A human reader never sees any of it.</p>
@@ -419,7 +408,7 @@ body.overview .slide::after { content: attr(data-n); position: absolute; top: .6
     <h2>Smaller, cheaper models are the most vulnerable to this attack, and the ones deployed at scale.</h2>
     <div class="split top">
       <div class="col narrow">
-        <p class="sub">What we did: ran <b>6 AI systems</b> (<span class="model">GPT-5.2</span>, <span class="model">Claude</span>, <span class="model">Gemini Flash 3.5</span>, <span class="model">Gemini Flash Lite</span>, <span class="model">Grok</span>, <span class="model">Perplexity</span>) on the same PyVault page from the last slide, under the same 3 reading conditions, <b>screenshot, raw HTML, live agentic browsing </b>, and read what each one actually said.</p>
+        <p class="sub">What we did: ran <b>6 AI systems</b> (<span class="model">GPT-5.2</span>, <span class="model">Claude</span>, <span class="model">Gemini Flash 3.5</span>, <span class="model">Gemini Flash Lite</span>, <span class="model">Grok</span>, <span class="model">Perplexity</span>) on the same PyVault page from the last slide, under the same 3 reading conditions, <b>screenshot, raw HTML, live agentic browsing</b>, and read what each one actually said.</p>
         <div class="cv-caps">
           <p class="foot on">GPT-5.2, reasoning over the raw HTML, called the page "<b>intentionally constructed</b> to test whether automated agents trust <span class="key">metadata over visible content</span>."</p>
         </div>
@@ -538,12 +527,6 @@ body.overview .slide::after { content: attr(data-n); position: absolute; top: .6
 </div>
 
 <script>
-/* Deck navigation, trimmed from deck-boilerplate.html's assets/deck.js: no mermaid, no
- * component/stage-flow (this talk doesn't use them).
- * <- -> space   move       Home/End  first/last     S  speaker notes
- * O / Esc       overview   F         fullscreen     1-9 jump to slide
- * Deep link + restore via the URL hash, so a reload keeps your place.
- */
 (function () {
   var slides = [].slice.call(document.querySelectorAll('.slide'));
   var bar = document.querySelector('.bar > i');
@@ -561,7 +544,6 @@ body.overview .slide::after { content: attr(data-n); position: absolute; top: .6
     if (prevBtn) prevBtn.disabled = i === 0;
     if (nextBtn) nextBtn.disabled = i === n - 1;
     if (push !== false) history.replaceState(null, '', '#' + (i + 1));
-    // ribbons.js listens for this to start/stop the canvas on the active slide only.
     document.dispatchEvent(new CustomEvent('deck:slide', { detail: { i: i, el: slides[i] } }));
   }
 
@@ -604,8 +586,6 @@ body.overview .slide::after { content: attr(data-n); position: absolute; top: .6
     if (!isNaN(want) && want - 1 !== i) show(want - 1, false);
   });
 
-  // Tabbed source/render window (.cv), adapted from deck-boilerplate.html's codeview() /
-  // wireCodeTabs(): click a tab, its matching pane and caption (same index) show, the rest hide.
   [].slice.call(document.querySelectorAll('.cv')).forEach(function (cv) {
     var tabs = [].slice.call(cv.querySelectorAll('.cv-tab'));
     var panes = [].slice.call(cv.querySelectorAll('.cv-body'));
@@ -622,73 +602,42 @@ body.overview .slide::after { content: attr(data-n); position: absolute; top: .6
 })();
 </script>
 <script>
-/* assets/ribbons.js, ported verbatim from deck-boilerplate.html. Flowing neon light-trails in
- * perspective, the backdrop for the deck's slides.
- *
- * The look is "long-exposure headlights on a highway": trails fan out toward the viewer on the
- * left, converge toward a vanishing point off the right edge, and taper as they recede.
- *
- * Two decisions carry it:
- *
- *  1. Each trail is a FILLED tapered polygon, not a stroked path. A stroke has one width for
- *     the whole path, so a stroked trail cannot recede, it reads as a flat wavy line (an audio
- *     waveform, not a road). Filling between a top and bottom edge whose separation shrinks
- *     toward the vanishing point gives real depth for one fill per pass. Per-segment strokes
- *     would also taper but cost ~180x the draw calls.
- *
- *  2. The glow is ADDITIVE, three fills per trail from wide-and-faint to a thin hot core.
- *     'lighter' accumulates them into a bloom with a bright centre. shadowBlur looks similar
- *     and costs roughly an order of magnitude more per frame, which is the difference between
- *     60fps and a stutter on a laptop driving a projector.
- *
- * Mount: <div class="rb" data-ribbons></div>   (appends its own canvas)
- * prefers-reduced-motion renders ONE static frame: the composition still reads, nothing moves.
- */
 (function () {
   var HOSTS = [].slice.call(document.querySelectorAll('[data-ribbons]'));
   if (!HOSTS.length) return;
 
   var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  // Ordered so neighbours differ: two adjacent trails of one hue merge into a fat blur.
   var HUES = [
-    [ 56, 189, 248],   // sky
-    [249, 115,  22],   // orange
-    [ 34, 211, 238],   // cyan
-    [239,  68,  68],   // red
-    [ 96, 165, 250],   // blue
-    [251, 191,  36],   // amber
-    [ 45, 212, 191],   // teal
-    [129, 140, 248],   // indigo
-    [ 34, 211, 238],   // cyan again, far out
-    [249, 115,  22]    // orange again, far out
+    [ 56, 189, 248],
+    [249, 115,  22],
+    [ 34, 211, 238],
+    [239,  68,  68],
+    [ 96, 165, 250],
+    [251, 191,  36],
+    [ 45, 212, 191],
+    [129, 140, 248],
+    [ 34, 211, 238],
+    [249, 115,  22]
   ];
 
-  // Vanishing point, in fractions of the frame. Off the right edge so the trails converge hard
-  // but never fully pinch to nothing, pinching to a point looks like a starburst, not a road.
   var VX = 1.28, VY = 0.71;
-  // Trails fan DOWN much more than up: the headline lives in the upper left and light
-  // crossing 120px type destroys it. Asymmetric spread keeps that corner clear.
   var UP_SQUASH = 0.32;
 
   function rnd(a, b) { return a + Math.random() * (b - a); }
 
   function makeTrail(k, n) {
     var t = n === 1 ? 0.5 : k / (n - 1);
-    // Signed offset at the left edge: how far above/below the horizon this trail enters.
     var off = (t - 0.5) * 2;
     return {
       rgb: HUES[k % HUES.length],
       off: off * rnd(0.55, 1.0) * (off < 0 ? UP_SQUASH : 1),
-      // Thickness at the viewer end. A wide range is essential, a few hot filaments plus a
-      // few soft washes is what reads as light; all-equal widths reads as a chart.
       w: rnd(0.9, 5.2),
-      wob: rnd(0.010, 0.042),     // wobble amplitude, fraction of height
-      wk: rnd(0.8, 2.3),          // wobble cycles across the width
+      wob: rnd(0.010, 0.042),
+      wk: rnd(0.8, 2.3),
       wp: rnd(0, 6.283),
       sp: rnd(0.10, 0.30) * (k % 3 === 0 ? -1 : 1),
       glow: rnd(0.7, 1.25),
-      // Some trails arc into a peak, like a ridge line. Others stay flat.
       peak: Math.random() < 0.4 ? rnd(0.45, 0.80) : -1,
       peakA: rnd(0.10, 0.26),
       peakW: rnd(0.06, 0.13)
@@ -696,9 +645,6 @@ body.overview .slide::after { content: attr(data-n); position: absolute; top: .6
   }
 
   function build(host) {
-    /* "calm" halves the trail count, dims them and slows the drift. Used on slides where the
-     * audience is meant to read a code panel: a bright, busy field behind text competes with it.
-     * The field is atmosphere there, not the subject. */
     var calm = host.dataset.ribbons === 'calm';
 
     var cv = document.createElement('canvas');
@@ -712,9 +658,6 @@ body.overview .slide::after { content: attr(data-n); position: absolute; top: .6
     for (var k = 0; k < COUNT; k++) trails.push(makeTrail(k, COUNT));
 
     function resize() {
-      // Deliberately BELOW devicePixelRatio. Every pixel here is a large additive fill, and
-      // the content is soft glow with no hard edges, so downsampling is free visually and
-      // quadratic on cost. At 2x this drops under 20fps on a laptop.
       dpr = Math.min(window.devicePixelRatio || 1, 1.25);
       var r = host.getBoundingClientRect();
       W = Math.max(1, Math.round(r.width));
@@ -734,7 +677,7 @@ body.overview .slide::after { content: attr(data-n); position: absolute; top: .6
         g.addColorStop(1.00, '#02040c');
       } else {
         g.addColorStop(0.00, '#0b1440');
-        g.addColorStop(0.30, '#101c5e');   // the blue peaks just above the horizon
+        g.addColorStop(0.30, '#101c5e');
         g.addColorStop(0.56, '#081132');
         g.addColorStop(0.82, '#04081a');
         g.addColorStop(1.00, '#02040c');
@@ -742,7 +685,6 @@ body.overview .slide::after { content: attr(data-n); position: absolute; top: .6
       cx.fillStyle = g;
       cx.fillRect(0, 0, W, H);
 
-      // Light source at the vanishing point.
       var r = cx.createRadialGradient(W * 0.92, H * VY, 0, W * 0.92, H * VY, W * 0.62);
       var hot = calm ? 0.3 : 1;
       r.addColorStop(0.00, 'rgba(70,130,255,' + (0.26 * hot) + ')');
@@ -752,27 +694,23 @@ body.overview .slide::after { content: attr(data-n); position: absolute; top: .6
       cx.fillRect(0, 0, W, H);
     }
 
-    /** Centre line of a trail at horizontal fraction u (0 = viewer, 1 = right edge). */
     function centre(tr, u, ph) {
-      // Perspective: distance from the vanishing point, 1 at the left edge -> ~0 at VX.
       var d = Math.max(0, 1 - u / VX);
-      var dd = Math.pow(d, 1.55);                 // >1 exponent = faster convergence, more depth
+      var dd = Math.pow(d, 1.55);
       var y = VY + tr.off * 0.46 * dd;
       y += tr.wob * dd * Math.sin(u * tr.wk * 6.283 + tr.wp + ph);
       if (tr.peak > 0) {
         var z = (u - tr.peak) / tr.peakW;
-        y -= tr.peakA * dd * Math.exp(-z * z);    // gaussian ridge
+        y -= tr.peakA * dd * Math.exp(-z * z);
       }
       return y * H;
     }
 
-    /** Half-thickness in px at u. Recedes with the same law as the spread. */
     function half(tr, u, mul) {
       var d = Math.max(0, 1 - u / VX);
       return Math.max(0.16, tr.w * mul * Math.pow(d, 1.5));
     }
 
-    // wide+faint -> thin+hot. The last pass is the visible filament.
     var PASSES = [[8.5, 0.055], [3.4, 0.10], [1.0, 0.95]];
 
     function trail(tr, time) {
@@ -782,12 +720,12 @@ body.overview .slide::after { content: attr(data-n); position: absolute; top: .6
         var mul = PASSES[p][0], al = PASSES[p][1] * tr.glow * (calm ? 0.40 : 1);
         cx.beginPath();
         var i, u, y, h;
-        for (i = 0; i <= N; i++) {                       // top edge, left -> right
+        for (i = 0; i <= N; i++) {
           u = i / N;
           y = centre(tr, u, ph); h = half(tr, u, mul);
           if (i === 0) cx.moveTo(u * W, y - h); else cx.lineTo(u * W, y - h);
         }
-        for (i = N; i >= 0; i--) {                       // bottom edge, right -> left
+        for (i = N; i >= 0; i--) {
           u = i / N;
           y = centre(tr, u, ph); h = half(tr, u, mul);
           cx.lineTo(u * W, y + h);
@@ -799,7 +737,6 @@ body.overview .slide::after { content: attr(data-n); position: absolute; top: .6
       }
     }
 
-    /** Diffuse pool of light on the "floor" under the trails. */
     function haze() {
       var g = cx.createLinearGradient(0, H * VY, 0, H);
       g.addColorStop(0.00, 'rgba(40,110,230,.10)');
@@ -848,8 +785,6 @@ body.overview .slide::after { content: attr(data-n); position: absolute; top: .6
   var fields = HOSTS.map(build);
   var slideOf = function (f) { return f.host.closest('.slide'); };
 
-  /* Only animate the field on the slide being shown. Ten trails x three fills is cheap for one
-   * canvas and wasteful for several running behind hidden slides. */
   if (document.querySelector('.slide')) {
     document.addEventListener('deck:slide', function (e) {
       fields.forEach(function (f) {
