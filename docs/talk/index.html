@@ -261,7 +261,6 @@ body.overview .slide::after { content: attr(data-n); position: absolute; top: .6
     <h2>We use Barad's intra-action to reframe hypertext as relational: the reader and the page make each other in the act of reading.</h2>
     <p class="sub"><b>Barad's "intra-action" (2007):</b> entities do not pre-exist their encounter and then interact, they emerge through it. An AI agent does not observe a fixed, already-written webpage: the way it ingests code and metadata actively defines what the text is in that moment, while the page's hidden architecture simultaneously directs the agent.</p>
     <div class="cv-caps">
-      <p class="foot on">Interpretation and meaning is <b>actively co-created</b> in the entangled moment the machine parses the code. Because the AI and the text are inseparable in this meaning-making process, manipulating a webpage's hidden structure <span class="key">completely dictates</span> the machine's interpretation.</p>
     </div>
     <div class="cv-caps">
       <p class="foot on">Treating the AI agent as a reader dynamically entangled with the text's network architecture changes how we understand what goes wrong when agents are manipulated. When an agent is captured by a page's structure, led down a path it cannot question, trusting metadata it cannot interrogate, it is <span class="key">not simply encountering a bug</span>.</p>
@@ -408,16 +407,11 @@ body.overview .slide::after { content: attr(data-n); position: absolute; top: .6
     <h2>Smaller, cheaper models are the most vulnerable to this attack, and the ones deployed at scale.</h2>
     <div class="split top">
       <div class="col narrow">
-        <p class="sub">What we did: ran <b>6 AI systems</b> (<span class="model">GPT-5.2</span>, <span class="model">Claude</span>, <span class="model">Gemini Flash 3.5</span>, <span class="model">Gemini Flash Lite</span>, <span class="model">Grok</span>, <span class="model">Perplexity</span>) on the same PyVault page from the last slide, under the same 3 reading conditions, <b>screenshot, raw HTML, live agentic browsing</b>, and read what each one actually said.</p>
+        <p class="sub">What we did: ran <b>6 AI systems</b> (<span class="model">GPT-5.2</span>, <span class="model">Claude</span>, <span class="model">Gemini Flash 3.5</span>, <span class="model">Gemini Flash Lite</span>, <span class="model">Grok</span>, <span class="model">Perplexity</span>) on the same PyVault page from the last slide, under the same 3 reading conditions, <b>screenshot, raw HTML, live agentic browsing</b></p>
         <div class="cv-caps">
-          <p class="foot on">GPT-5.2, reasoning over the raw HTML, called the page "<b>intentionally constructed</b> to test whether automated agents trust <span class="key">metadata over visible content</span>."</p>
-        </div>
-        <div class="cv-caps">
-          <p class="foot on">Claude, same condition, called it a "<b>textbook prompt injection attack</b>," and warned a <span class="key">naive agent</span> parsing the full page might still get fooled.</p>
-        </div>
       </div>
       <div class="col">
-        <p class="sub">Two of these just confirm what's in the numbers below. The third one is what actually surprised us:</p>
+        <p class="sub">Under-resourced users are disproportionately exposed:</p>
         <div class="pair">
           <div class="pair-card">
             <div class="pair-name">Gemini Flash 3.5</div>
@@ -431,7 +425,7 @@ body.overview .slide::after { content: attr(data-n); position: absolute; top: .6
             <p>Cheaper, faster, and the one that got fooled by the fabricated patch.</p>
           </div>
         </div>
-        <p class="foot">Cheaper, faster models are exactly the ones deployed at scale, and the most vulnerable. Under-resourced users are disproportionately exposed.</p>
+        <p class="foot"></p>
         <div class="stats compact">
           <div class="stat"><span class="n">6 / 6</span><span class="l">Screenshot Only: <b class="v-good">Resisted</b></span></div>
           <div class="stat"><span class="n">6 / 6</span><span class="l">Raw HTML: <b class="v-good">Resisted</b>, named the attack</span></div>
@@ -475,7 +469,7 @@ body.overview .slide::after { content: attr(data-n); position: absolute; top: .6
 <section class="slide" data-n="8">
   <div class="rb" data-ribbons="calm"></div>
   <div class="slide-body">
-    <div class="eyebrow">A few research directions</div>
+    <div class="eyebrow">A few research directions for an interdisciplinary audience navigating hypertext after AI:</div>
     <ul class="beats cols2">
       <li><b>Reader provenance.</b> Documents should be able to declare who they were written for, a hidden-layer choice that currently goes unmarked.</li>
       <li><b>Shared readability.</b> Humans and agents should not receive contradictory accounts of the same page, any gap should be open and auditable.</li>
