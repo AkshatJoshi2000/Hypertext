@@ -421,8 +421,11 @@ body.overview .slide::after { content: attr(data-n); position: absolute; top: .6
     <main class="findings-grid">
       <!-- Block 1: Model Comparison -->
       <section class="card-panel">
+        <div class="exhibit" style="float: right; max-width: 190px; margin: 0 0 1vh 1.4vw;">
+          <img src="assets/results-table.png" alt="Full results table: all 6 models (GPT-5.2, Claude 4.6, Gemini Flash 3.5, Gemini Flash Lite, Grok, Perplexity) across all 3 conditions (Screenshot, Raw HTML, Live URL), with each outcome.">
+        </div>
         <p class="panel-label">Disproportionate Model Impact</p>
-        <div class="pair">
+        <div class="pair" style="clear: right;">
           <div class="pair-card">
             <div class="pair-name">Gemini Flash 3.5</div>
             <span class="pill live">Partially resisted</span>
